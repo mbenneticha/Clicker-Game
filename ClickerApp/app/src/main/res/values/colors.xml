@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="primary_background">#4266B9</color>
+    <color name="circle_button">#FF9B47</color>
+    <color name="circle_button_pressed">#B56E32</color>
 </resources>

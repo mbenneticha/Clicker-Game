@@ -1,85 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:id="@+id/activity_main_layout_horizontal"
+    android:orientation="horizontal"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:padding="0dp"
+    android:background="@color/primary_background"
     tools:context="com.example.mariam.clickerapp.MainActivity">
 
-    <TextView
-        android:layout_width="87dp"
-        android:layout_height="32dp"
-        android:text="Level: "
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main_layout"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:padding="0dp"
+        android:background="@color/primary_background"
+        tools:context="com.example.mariam.clickerapp.MainActivity">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="139dp"
-        android:layout_height="139dp"
-        app:srcCompat="@mipmap/ic_launcher_round"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="214dp" />
+        <TextView
+            android:id="@+id/activity_main_layout_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/activity_main_layout_textview_text"
+        />
 
-    <Button
-        android:id="@+id/ability2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ability2"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="302dp" />
+        <TextView
+            android:id="@+id/click_number_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="."
+        />
 
-    <Button
-        android:id="@+id/ability1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ability1"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="214dp" />
 
-    <Button
-        android:id="@+id/ability3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ability3"
-        tools:layout_editor_absoluteX="230dp"
-        tools:layout_editor_absoluteY="214dp" />
 
-    <Button
-        android:id="@+id/ability4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ability4"
-        tools:layout_editor_absoluteX="230dp"
-        tools:layout_editor_absoluteY="302dp" />
+        <LinearLayout
+            android:id="@+id/ability_button_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="25dp"
+            android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/upgrade"
-        android:layout_width="88dp"
-        android:layout_height="48dp"
-        android:text="Upgrade"
-        tools:layout_editor_absoluteX="218dp"
-        tools:layout_editor_absoluteY="16dp" />
+            <Button
+                android:id="@+id/button_ability_1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/circle_button"
+                android:text="@string/button_click"
+                android:onClick="abilityClick"
+            />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="107dp"
-        android:layout_height="34dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="107dp"
-        tools:layout_editor_absoluteY="16dp" />
+            <Button
+                android:id="@+id/button_ability_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/circle_button"
+                android:text="@string/button_click"
+                android:onClick="abilityClick"
+            />
 
-    <ListView
-        android:id="@+id/Rankings"
-        android:layout_width="227dp"
-        android:layout_height="140dp"
-        android:scrollbars="none"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="64dp" />
+            <Button
+                android:id="@+id/button_ability_3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/circle_button"
+                android:text="@string/button_click"
+                android:onClick="abilityClick"
+            />
 
-</android.support.constraint.ConstraintLayout>
+            <Button
+                android:id="@+id/button_ability_4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/circle_button"
+                android:text="@string/button_click"
+                android:onClick="abilityClick"
+            />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:padding="0dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/button_clicker"
+                android:layout_width="192dp"
+                android:layout_height="192dp"
+                android:gravity="center_horizontal"
+                android:background="@drawable/circle_button"
+                android:text="@string/button_click"
+                android:textAlignment="center"
+                android:onClick="primaryClick"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
