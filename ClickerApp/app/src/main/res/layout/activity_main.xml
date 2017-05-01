@@ -26,76 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:textSize="20dp"
             android:text="@string/activity_main_layout_textview_text"
         />
-
-        <TextView
-            android:id="@+id/click_number_output"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="."
-        />
-
-
-
-        <LinearLayout
-            android:id="@+id/ability_button_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="0dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="25dp"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/button_ability_1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/circle_button"
-                android:text="@string/button_click"
-                android:onClick="abilityClick"
-            />
-
-            <Button
-                android:id="@+id/button_ability_2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="25dp"
-                android:background="@drawable/circle_button"
-                android:text="@string/button_click"
-                android:onClick="abilityClick"
-            />
-
-            <Button
-                android:id="@+id/button_ability_3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="25dp"
-                android:background="@drawable/circle_button"
-                android:text="@string/button_click"
-                android:onClick="abilityClick"
-            />
-
-            <Button
-                android:id="@+id/button_ability_4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/circle_button"
-                android:text="@string/button_click"
-                android:onClick="abilityClick"
-            />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,7 +45,7 @@
                 android:background="@drawable/circle_button"
                 android:text="@string/button_click"
                 android:textAlignment="center"
-                android:onClick="primaryClick"
+                android:onClick="startGame"
                 />
 
         </LinearLayout>
