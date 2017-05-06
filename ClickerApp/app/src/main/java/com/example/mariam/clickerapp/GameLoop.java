@@ -100,6 +100,10 @@ public class GameLoop extends SurfaceView implements Runnable {
     }
 
     private void update(){
+        if(this.gameLogic.getClickCount() == this.gameLogic.getUnlockValue()){
+            this.gameLogic.levelUp();
+
+        }
 
     }
 
@@ -123,7 +127,7 @@ public class GameLoop extends SurfaceView implements Runnable {
             paint.setStrokeWidth(1);
             paint.setColor(Color.BLACK);
             paint.setTextSize(100);
-            canvas.drawText("0", ((this.WIDTH / 2) - 22), 228, paint);
+            canvas.drawText(Integer.toString(this.gameLogic.getLevel()), ((this.WIDTH / 2) - 22), 228, paint);
             paint.setTextSize(75);
             canvas.drawText(Integer.toString(this.gameLogic.getClickCount()), ((this.WIDTH / 5) * 3), 220, paint);
 

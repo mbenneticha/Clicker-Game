@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //for testing
+    private int clickedCount;
     public int setClickedCount(int value){
         clickedCount = value;
         return clickedCount;
