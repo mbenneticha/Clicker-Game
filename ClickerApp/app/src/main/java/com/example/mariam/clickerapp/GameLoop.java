@@ -100,9 +100,43 @@ public class GameLoop extends SurfaceView implements Runnable {
     }
 
     private void update(){
-        if(this.gameLogic.getClickCount() == this.gameLogic.getUnlockValue()){
+        if(this.gameLogic.getTotalCurrency() == this.gameLogic.getUnlockValue()){
             this.gameLogic.levelUp();
+        }
 
+        if(this.gameLogic.getLevel() == 1){
+            if (!this.ability_1.isAbilityUnlocked()){
+                this.ability_1.unlockAbility();
+                int idNum = this.ability_1.getAbilityId();
+                this.ability_1 = new Ability(getContext(), this.ability_1.getAbilityName(), this.ability_1.getAbilityId(), this.ability_1.getAbilityButtonId(), R.drawable.ability_peas, this.WIDTH, this.HEIGHT);
+            }
+        }
+
+        if(this.gameLogic.getTotalCurrency() == this.gameLogic.getUnlockValue()){
+            this.gameLogic.levelUp();
+        }
+
+        if(this.gameLogic.getLevel() == 5){
+            if (!this.ability_2.isAbilityUnlocked()){
+                this.ability_2.unlockAbility();
+                int idNum = this.ability_2.getAbilityId();
+                this.ability_2 = new Ability(getContext(), this.ability_2.getAbilityName(), this.ability_2.getAbilityId(), this.ability_2.getAbilityButtonId(), R.drawable.ability_carrot, this.WIDTH, this.HEIGHT);
+            }
+        }
+
+        if(this.gameLogic.getLevel() == 10){
+            if (!this.ability_3.isAbilityUnlocked()){
+                this.ability_3.unlockAbility();
+                int idNum = this.ability_3.getAbilityId();
+                this.ability_3 = new Ability(getContext(), this.ability_3.getAbilityName(), this.ability_3.getAbilityId(), this.ability_3.getAbilityButtonId(), R.drawable.ability_broccoli, this.WIDTH, this.HEIGHT);
+            }
+        }
+        if(this.gameLogic.getLevel() == 15){
+            if (!this.ability_4.isAbilityUnlocked()){
+                this.ability_4.unlockAbility();
+                int idNum = this.ability_4.getAbilityId();
+                this.ability_4 = new Ability(getContext(), this.ability_4.getAbilityName(), this.ability_4.getAbilityId(), this.ability_4.getAbilityButtonId(), R.drawable.ability_yogurtdrops, this.WIDTH, this.HEIGHT);
+            }
         }
 
     }
@@ -126,6 +160,8 @@ public class GameLoop extends SurfaceView implements Runnable {
             paint.setStyle(Paint.Style.FILL);
             paint.setStrokeWidth(1);
             paint.setColor(Color.BLACK);
+            paint.setTextSize(100);
+            canvas.drawText(Double.toString(this.gameLogic.getTotalCurrency()), ((this.WIDTH / 5)), 220, paint);
             paint.setTextSize(100);
             canvas.drawText(Integer.toString(this.gameLogic.getLevel()), ((this.WIDTH / 2) - 22), 228, paint);
             paint.setTextSize(75);
@@ -158,9 +194,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         this.gameLoopThread.start();
     }
 
-    public void incClicks(int clicks){
-        this.gameLogic.incClicks(clicks);
-    }
+    public void incClicks(int clicks){ this.gameLogic.incClicks(clicks); }
 
     public void icc(){
         this.gameLogic.icc();
