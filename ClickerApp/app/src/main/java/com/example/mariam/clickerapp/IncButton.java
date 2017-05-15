@@ -7,50 +7,16 @@ import android.graphics.Rect;
 import android.widget.Toast;
 
 
-public class IncButton {
+public class IncButton extends Button{
 
-    private int id;
-    private int width;
-    private int height;
-    private int xPos;
-    private int yPos;
-    public Bitmap image;
-    private Rect bounds;
+    public IncButton(Context context, String name, int id, int image_Active, int image_Rest, int canvasWidth, int canvasHeight, int width, int height){
+        super(context, name, id, image_Active, image_Rest, width, height);
 
-    public IncButton(Context context, int incButtonWidth, int incButtonHeight, int canvasWidth, int canvasHeight){
-
-        this.width = (canvasWidth / 2);
-        this.height = (canvasWidth / 2);
-        this.xPos = (canvasWidth / 4);
-        this.yPos = (((canvasHeight / 3) * 2) - 50);
-
-        this.image = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.inc_button_generic), incButtonWidth, incButtonHeight, false);
-
-        this.bounds = new Rect(this.xPos, this.yPos, (this.xPos + this.height), (this.yPos + this.width));
-    }
-
-    public int getXPos(){
-        return this.xPos;
-    }
-
-    public int getYPos(){
-        return this.yPos;
-    }
-
-    public int getHeight(){
-        return this.height;
-    }
-
-    public int getWidth(){
-        return this.width;
-    }
-
-    public Bitmap getImage(){
-        return this.image;
-    }
-
-    public Rect getBounds(){
-        return this.bounds;
+        int xPos = (canvasWidth / 4);
+        int yPos = (((canvasHeight / 3) * 2) - 50);
+        this.setXPos(xPos);
+        this.setYPos(yPos);
+        this.setBounds();
     }
 
     public void displayAbilityToast(Context context) {
@@ -60,11 +26,11 @@ public class IncButton {
     }
 
     public void clickDown(Context context){
-        this.image = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.inc_button_pressed), this.width, this.height, false);
+        super.clickDown();
     }
 
     public void clickUp(Context context){
-        this.image = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.inc_button_generic), this.width, this.height, false);
+        super.clickDown();
     }
 
 

@@ -44,25 +44,8 @@ public class GameLoopActivity extends AppCompatActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
-        int xPos = (int) event.getX();
-        int yPos = (int) event.getY();
 
+        return this.gameLoop.touchCheck(event);
 
-        Rect bounds = this.gameLoop.incButton.getBounds();
-        if(bounds.contains(xPos, yPos) &&
-                event.getAction() == MotionEvent.ACTION_DOWN){
-
-            this.gameLoop.icc();
-            this.gameLoop.incButton.clickDown(getApplication());
-            return true;
-        }
-        if(bounds.contains(xPos, yPos) &&
-                event.getAction() == MotionEvent.ACTION_UP){
-
-            this.gameLoop.incButton.clickUp(getApplication());
-            return true;
-        }
-
-        return false;
     }
 }

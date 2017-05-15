@@ -3,100 +3,78 @@ package com.example.mariam.clickerapp;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class Ability {
+public class Ability extends Button{
 
-    private String abilityName;
-    private int abilityId;
     private boolean isUnlocked;
-    private int abilityButtonId;
-    private Bitmap abilityImage;
-    private int width;
-    private int height;
-    private int xPos;
-    private int yPos;
+    private Bitmap image_Locked;
+    public boolean isActive;
 
-    public Ability(Context context, String abilityName, int abilityId, int abilityButtonId, int abilityImage, int canvasWidth, int canvasHeight){
-        this.abilityName = abilityName;
-        this.abilityId = abilityId;
+    public Ability(Context context, String abilityName, int abilityId, int image_Active, int image_Rest, int image_Locked, int canvasWidth, int canvasHeight, int width, int height){
+        super(context, abilityName, abilityId, image_Active, image_Rest, width, height);
+        this.isActive = false;
         this.isUnlocked = false;
-        this.abilityButtonId = abilityButtonId;
-        this.abilityImage = BitmapFactory.decodeResource(context.getResources(), abilityImage);;
-        this.width = this.abilityImage.getWidth();
-        this.height = this.abilityImage.getHeight();
-        this.xPos = (((canvasWidth / 4) * this.abilityId) - 42) - (this.width);
-        this.yPos = ((canvasHeight / 2) - 16);
-        if((this.abilityId == 1) || (this.abilityId == 4)){
-            this.yPos += 125;
+        this.image_Locked = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), image_Locked), width, height, false);
+
+        int xPos = (((canvasWidth / 4) * abilityId) - 60) - (width);
+        int yPos = ((canvasHeight / 2));
+        if((abilityId == 1) || (abilityId == 4)){
+            yPos += 125;
         }
+        this.setXPos(xPos);
+        this.setYPos(yPos);
+        this.setBounds();
+        this.setImageLocked();
     }
 
-    public Ability(String abilityName, int abilityId){
-        this.abilityName = abilityName;
-        this.abilityId = abilityId;
-        this.isUnlocked = false;
-        this.abilityButtonId = -1;
-        this.abilityImage = null;
-        this.width = 0;
-        this.height = 0;
-    }
-
-    public int getXPos(){
-        return this.xPos;
-    }
-
-    public int getYPos(){
-        return this.yPos;
-    }
-
-    public int getHeight(){
-        return this.height;
-    }
-
-    public int getWidth(){
-        return this.width;
-    }
-    public boolean isAbilityUnlocked(){
-        return this.isUnlocked;
-    }
+    public void setImageLocked(){this.setCurrentImage(this.image_Locked);}
 
     public void unlockAbility(){
         this.isUnlocked = true;
+        this.setImageAtRest();
     }
 
     public void displayAbilityToast(Context context) {
-        String text = "Ability #" + Integer.toString(abilityId) + " clicked!";
+        String text = "Ability #" + Integer.toString(this.getId()) + " clicked!";
         Toast abilityToast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
         abilityToast.show();
     }
 
-    public void execute(Context context){
-        this.displayAbilityToast(context);
+    public double turnOnAbility(double passedInValue){
+        this.isActive = true;
+        return passedInValue;
     }
 
-    public String getAbilityName(){
-        return this.abilityName;
-    }
+    public double turnOffAbility(double clickValue){
+        double returnValue;
+        if(this.isActive) {
+            this.isActive = false;
+            returnValue = (clickValue / 2);
+        } else {
+            returnValue = clickValue;
+        }
 
-    public int getAbilityId(){
-        return this.abilityId;
+        return returnValue;
     }
 
     public boolean isUnlocked(){
         return this.isUnlocked;
     }
 
-    public int getAbilityButtonId(){
-        return this.abilityButtonId;
+    public void clickDown(Context context, double valueToAffect){
+        super.clickDown();
+        this.turnOnAbility(valueToAffect);
     }
 
-    public Bitmap getAbilityImage(){
-        return this.abilityImage;
+    public void clickUp(Context context, double valueToAffect){
+        super.clickUp();
+        this.turnOffAbility(valueToAffect);
     }
 
 }

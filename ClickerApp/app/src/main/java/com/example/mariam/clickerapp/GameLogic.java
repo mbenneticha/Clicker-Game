@@ -2,8 +2,13 @@ package com.example.mariam.clickerapp;
 
 
 import android.content.Context;
+import android.graphics.Rect;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.Toast;
 import java.text.NumberFormat;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameLogic {
 
@@ -35,6 +40,14 @@ public class GameLogic {
         this.clickCount++;
         this.total_currency += clickValue;
         this.current_currency += clickValue;
+    }
+
+    public void setClickValue(double value){
+        this.clickValue = value;
+    }
+
+    public double getClickValue(){
+        return this.clickValue;
     }
 
     public void incClicks(int clicks){
@@ -89,4 +102,84 @@ public class GameLogic {
     }
 
 
+
+
+    public boolean handleClick(MotionEvent event, Button ability) {
+
+
+        int xPos = (int) event.getX();
+        int yPos = (int) event.getY();
+        Rect rect = ability.getBounds();
+
+        if (rect.contains(xPos, yPos) &&
+                event.getAction() == MotionEvent.ACTION_DOWN) {
+
+            ability.clickDown();
+            return true;
+        }
+        if (rect.contains(xPos, yPos) &&
+                event.getAction() == MotionEvent.ACTION_UP) {
+
+            ability.clickUp();
+            return true;
+        }
+
+        return false;
+    }
+
+    public void handleAbility1(final Ability ability1){
+        this.clickValue = ability1.turnOnAbility(this.clickValue);
+
+        Timer ability1_Timer = new Timer();
+
+        TimerTask turnOff = new TimerTask(){
+            public void run() {
+                GameLogic.this.setClickValue(ability1.turnOffAbility(GameLogic.this.getClickValue()));
+            }
+        };
+
+        ability1_Timer.schedule(turnOff, 3000);
+    }
+
+    public void handleAbility2(final Ability ability2){
+        this.clickValue = ability2.turnOnAbility(this.clickValue);
+
+        Timer ability1_Timer = new Timer();
+
+        TimerTask turnOff = new TimerTask(){
+            public void run() {
+                GameLogic.this.setClickValue(ability2.turnOffAbility(GameLogic.this.getClickValue()));
+            }
+        };
+
+        ability1_Timer.schedule(turnOff, 3000);
+    }
+
+    public void handleAbility3(final Ability ability3){
+        this.clickValue = ability3.turnOnAbility(this.clickValue);
+
+        Timer ability1_Timer = new Timer();
+
+        TimerTask turnOff = new TimerTask(){
+            public void run() {
+                GameLogic.this.setClickValue(ability3.turnOffAbility(GameLogic.this.getClickValue()));
+            }
+        };
+
+        ability1_Timer.schedule(turnOff, 3000);
+    }
+
+    public void handleAbility4(final Ability ability4){
+        this.clickValue = ability4.turnOnAbility(this.clickValue);
+
+        Timer ability1_Timer = new Timer();
+
+        TimerTask turnOff = new TimerTask(){
+            public void run() {
+                GameLogic.this.setClickValue(ability4.turnOffAbility(GameLogic.this.getClickValue()));
+            }
+        };
+
+        ability1_Timer.schedule(turnOff, 3000);
+    }
 }
