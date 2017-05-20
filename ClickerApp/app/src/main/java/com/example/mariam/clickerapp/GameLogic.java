@@ -22,12 +22,13 @@ public class GameLogic {
      */
     private int clickCount, level;
     private double clickValue, unlockValue, total_currency, current_currency;
+	double[] clickValues = new double[] { 0.01, 0.03, 0.09, 0.27, 0.81, 2.43, 3.65, 10.94, 32.81, 98.42, 295.25, 442.87, 1328.60, 3985.81, 11957.43, 35872.27, 71744.54, 215233.61, 645700.82, 1937102.45, 5811307.34  };
 
     public GameLogic(){
         this.clickCount = 0;
         this.total_currency = 0.00;
         this.current_currency = 0.00;
-        this.clickValue = 0.50;
+        this.clickValue = 0.01;
         this.level = 0;
         this.unlockValue = 5.00;
     }
@@ -99,6 +100,7 @@ public class GameLogic {
     public void levelUp(){
         this.level++;
         this.unlockValue *= 3;
+		setClickValue(clickValues[this.level]);
     }
 
 
