@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         MediaPlayer song = MediaPlayer.create(MainActivity.this,R.raw.hamsong);
         song.start();
+        song.setLooping(true);
 
     }
 
