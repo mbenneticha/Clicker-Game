@@ -1,10 +1,11 @@
-// Resource to implement animation: https://developer.android.com/guide/topics/resources/animation-resource.html
-
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Resource to implement animation: https://developer.android.com/guide/topics/resources/animation-resource.html
+-->
+
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
-    android:oneshot=["false"] >
-<item android:drawable="@drawable/hamster_default.png" android:duration="100" />
-<item android:drawable="@drawable/hamster_default2.png" android:duration="100" />
-<item android:drawable="@drawable/hamster_default3.png" android:duration="100" />
-<item android:drawable="@drawable/hamster_default4.png" android:duration="100" />
-    </animation-list>
+    android:oneshot="false" >
+    <item android:drawable="@drawable/hamster_default" android:duration="100" />
+    <item android:drawable="@drawable/hamster_default2" android:duration="100" />
+    <item android:drawable="@drawable/hamster_default3" android:duration="100" />
+    <item android:drawable="@drawable/hamster_default4" android:duration="100" />
+</animation-list>
