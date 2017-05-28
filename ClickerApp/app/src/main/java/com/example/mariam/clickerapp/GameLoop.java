@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -65,6 +66,7 @@ public class GameLoop extends SurfaceView implements Runnable {
     private Paint paint;
     private Canvas canvas;
     private SurfaceHolder surfaceHolder;
+    private Typeface sueEllenTypeface;
 
     public GameLoop(Context context) {
         super(context);
@@ -168,6 +170,7 @@ public class GameLoop extends SurfaceView implements Runnable {
 
         surfaceHolder = getHolder();
         paint = new Paint();
+        sueEllenTypeface = new TypeFactory(context).sueEllenRegular;
     }
 
 
@@ -250,6 +253,7 @@ public class GameLoop extends SurfaceView implements Runnable {
             paint.setStrokeWidth(1);
             paint.setColor(Color.BLACK);
             paint.setTextSize(100);
+            paint.setTypeface(this.sueEllenTypeface);
             canvas.drawText(Double.toString(this.gameLogic.getTotalCurrency()), ((this.WIDTH / 5)), 220, paint);
             paint.setTextSize(100);
             canvas.drawText(Integer.toString(this.gameLogic.getLevel()), ((this.WIDTH / 2) - 22), 228, paint);
