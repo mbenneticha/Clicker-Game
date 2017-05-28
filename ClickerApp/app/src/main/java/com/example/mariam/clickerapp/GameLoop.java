@@ -1,6 +1,7 @@
 package com.example.mariam.clickerapp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -185,19 +186,19 @@ public class GameLoop extends SurfaceView implements Runnable {
             this.gameLogic.levelUp();
         }
 
-        if(this.gameLogic.getLevel() == 1){
+        if(this.gameLogic.getLevel() >= 1){
             if (!this.ability_1.isUnlocked()){
                 this.ability_1.unlockAbility();
             }
             this.upgrade_food.isUnlockable = true;
         }
-        if(this.gameLogic.getLevel() == 2){
+        if(this.gameLogic.getLevel() >= 2){
             this.upgrade_water.isUnlockable = true;
         }
-        if(this.gameLogic.getLevel() == 3){
+        if(this.gameLogic.getLevel() >= 3){
             this.upgrade_hut.isUnlockable = true;
         }
-        if(this.gameLogic.getLevel() == 4){
+        if(this.gameLogic.getLevel() >= 4){
             this.upgrade_wheel.isUnlockable = true;
         }
 
@@ -205,18 +206,18 @@ public class GameLoop extends SurfaceView implements Runnable {
             this.gameLogic.levelUp();
         }
 
-        if(this.gameLogic.getLevel() == 5){
+        if(this.gameLogic.getLevel() >= 5){
             if (!this.ability_2.isUnlocked()){
                 this.ability_2.unlockAbility();
             }
         }
 
-        if(this.gameLogic.getLevel() == 10){
+        if(this.gameLogic.getLevel() >= 10){
             if (!this.ability_3.isUnlocked()){
                 this.ability_3.unlockAbility();
             }
         }
-        if(this.gameLogic.getLevel() == 15){
+        if(this.gameLogic.getLevel() >= 15){
             if (!this.ability_4.isUnlocked()){
                 this.ability_4.unlockAbility();
             }
@@ -275,9 +276,43 @@ public class GameLoop extends SurfaceView implements Runnable {
         } catch(InterruptedException ex){
             ex.printStackTrace();
         }
+
+        // Save file on pause
+        SharedPreferences prefs = getContext().getSharedPreferences(
+                "com.example.mariam.clickerapp", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("lvl", gameLogic.getLevel());
+        editor.putInt("clicks", gameLogic.getClickCount());
+        editor.putLong("clickval", Double.doubleToRawLongBits(gameLogic.getClickValue()));
+        editor.putLong("currentCurrency", Double.doubleToRawLongBits(gameLogic.getCurrentCurrency()));
+        editor.putLong("totalCurrency", Double.doubleToRawLongBits(gameLogic.getTotalCurrency()));
+        editor.putInt("foodlvl", gameLogic.getFoodLevel());
+        editor.putInt("waterlvl", gameLogic.getWaterLevel());
+        editor.putInt("hutlvl", gameLogic.getHutLevel());
+        editor.putInt("wheellvl", gameLogic.getWheelLevel());
+        editor.putLong("unlockValue", Double.doubleToRawLongBits(gameLogic.getUnlockValue()));
+        editor.commit();
     }
 
     public void resume(){
+        // Load file on resume
+        SharedPreferences prefs = getContext().getSharedPreferences(
+                "com.example.mariam.clickerapp", Context.MODE_PRIVATE);
+        int defaultValue = 0;
+        long defaultLong = 0;
+        long defaultUnlock = 5;
+        double defaultClickVal = 0.50;  // CHANGE THIS FOR TESTING
+        gameLogic.setLevel(prefs.getInt("lvl", defaultValue));
+        gameLogic.setClickCount(prefs.getInt("clicks", defaultValue));
+        gameLogic.setClickValue(Double.longBitsToDouble(prefs.getLong("unlockValue", Double.doubleToRawLongBits(defaultClickVal))));
+        gameLogic.setCurrentCurrency(Double.longBitsToDouble(prefs.getLong("currentCurrency", defaultLong)));
+        gameLogic.setTotalCurrency(Double.longBitsToDouble(prefs.getLong("totalCurrency", defaultLong)));
+        gameLogic.setFoodLevel(prefs.getInt("foodlvl", defaultValue));
+        gameLogic.setWaterLevel(prefs.getInt("waterlvl", defaultValue));
+        gameLogic.setHutLevel(prefs.getInt("hutlvl", defaultValue));
+        gameLogic.setWheelLevel(prefs.getInt("wheellvl", defaultValue));
+        gameLogic.setUnlockValue(Double.longBitsToDouble(prefs.getLong("unlockValue", defaultUnlock)));
+
         this.loopRunning = true;
         this.gameLoopThread = new Thread(this);
         this.gameLoopThread.start();
