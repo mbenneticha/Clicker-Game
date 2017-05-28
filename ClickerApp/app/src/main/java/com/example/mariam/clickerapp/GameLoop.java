@@ -48,6 +48,11 @@ public class GameLoop extends SurfaceView implements Runnable {
     public Ability ability_3;
     public Ability ability_4;
 
+    public Upgrade upgrade_food;
+    public Upgrade upgrade_water;
+    public Upgrade upgrade_hut;
+    public Upgrade upgrade_wheel;
+
     volatile boolean loopRunning;
     private Thread gameLoopThread = null;
 
@@ -155,6 +160,12 @@ public class GameLoop extends SurfaceView implements Runnable {
 
         this.hamster = new Hamster(context, this.WIDTH, this.HEIGHT);
 
+        this.upgrade_food = new Upgrade(context, "Food Dish", 1, R.drawable.fooddish_basic, R.drawable.fooddish_deluxe, R.drawable.fooddish_luxury, R.drawable.fooddish_golden, R.drawable.fooddish_not_unlocked, this.WIDTH, this.HEIGHT, 200, 150);
+        this.upgrade_water = new Upgrade(context, "Water Bottle", 2, R.drawable.waterbottle_basic, R.drawable.waterbottle_deluxe, R.drawable.waterbottle_luxury, R.drawable.waterbottle_golden, R.drawable.waterbottle_not_unlocked, this.WIDTH, this.HEIGHT, 200, 200);
+        this.upgrade_hut = new Upgrade(context, "Hamster Hut", 3, R.drawable.hut_basic, R.drawable.hut_deluxe, R.drawable.hut_luxury, R.drawable.hut_golden, R.drawable.hut_not_unlocked, this.WIDTH, this.HEIGHT, 200, 200);
+        this.upgrade_wheel = new Upgrade(context, "Hamster Wheel", 4, R.drawable.wheel_basic, R.drawable.wheel_deluxe, R.drawable.wheel_luxury, R.drawable.wheel_golden, R.drawable.wheel_not_unlocked, this.WIDTH, this.HEIGHT, 200, 200);
+
+
         surfaceHolder = getHolder();
         paint = new Paint();
     }
@@ -178,6 +189,16 @@ public class GameLoop extends SurfaceView implements Runnable {
             if (!this.ability_1.isUnlocked()){
                 this.ability_1.unlockAbility();
             }
+            this.upgrade_food.isUnlockable = true;
+        }
+        if(this.gameLogic.getLevel() == 2){
+            this.upgrade_water.isUnlockable = true;
+        }
+        if(this.gameLogic.getLevel() == 3){
+            this.upgrade_hut.isUnlockable = true;
+        }
+        if(this.gameLogic.getLevel() == 4){
+            this.upgrade_wheel.isUnlockable = true;
         }
 
         if(this.gameLogic.getTotalCurrency() >= this.gameLogic.getUnlockValue()){
@@ -219,6 +240,12 @@ public class GameLoop extends SurfaceView implements Runnable {
 
             canvas.drawBitmap(this.hamster.getImage(), this.hamster.getX(), this.hamster.getY(), null);
 
+            canvas.drawBitmap(this.upgrade_food.getCurrentImage(), this.upgrade_food.getXPos(), this.upgrade_food.getYPos(), null);
+            canvas.drawBitmap(this.upgrade_water.getCurrentImage(), this.upgrade_water.getXPos(), this.upgrade_water.getYPos(), null);
+            canvas.drawBitmap(this.upgrade_hut.getCurrentImage(), this.upgrade_hut.getXPos(), this.upgrade_hut.getYPos(), null);
+            canvas.drawBitmap(this.upgrade_wheel.getCurrentImage(), this.upgrade_wheel.getXPos(), this.upgrade_wheel.getYPos(), null);
+
+
             paint.setStyle(Paint.Style.FILL);
             paint.setStrokeWidth(1);
             paint.setColor(Color.BLACK);
@@ -227,7 +254,7 @@ public class GameLoop extends SurfaceView implements Runnable {
             paint.setTextSize(100);
             canvas.drawText(Integer.toString(this.gameLogic.getLevel()), ((this.WIDTH / 2) - 22), 228, paint);
             paint.setTextSize(75);
-            canvas.drawText(Integer.toString(this.gameLogic.getClickCount()), ((this.WIDTH / 5) * 3), 220, paint);
+            canvas.drawText(Double.toString(this.gameLogic.getCurrentCurrency()), ((this.WIDTH / 5) * 3), 220, paint);
 
             surfaceHolder.unlockCanvasAndPost(canvas);
         }
@@ -273,10 +300,16 @@ public class GameLoop extends SurfaceView implements Runnable {
     public boolean touchCheck(MotionEvent event){
 
         IncButton incButton = this.incButton;
+
         Ability ability_1 = this.ability_1;
         Ability ability_2 = this.ability_2;
         Ability ability_3 = this.ability_3;
         Ability ability_4 = this.ability_4;
+
+        Upgrade upgrade_food = this.upgrade_food;
+        Upgrade upgrade_water = this.upgrade_water;
+        Upgrade upgrade_hut = this.upgrade_hut;
+        Upgrade upgrade_wheel = this.upgrade_wheel;
 
         if(this.gameLogic.handleClick(event, this.incButton)){
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -301,6 +334,26 @@ public class GameLoop extends SurfaceView implements Runnable {
         } else if(this.ability_4.isUnlocked() && this.gameLogic.handleClick(event, this.ability_4)){
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
                 this.gameLogic.handleAbility4(this.ability_4);
+            }
+            return true;
+        } else if(this.upgrade_food.isUnlockable() && this.gameLogic.handleClick(event, this.upgrade_food)){
+            if(event.getAction() == MotionEvent.ACTION_DOWN){
+                this.gameLogic.upgradeFood(this.upgrade_food);
+            }
+            return true;
+        }else if(this.upgrade_water.isUnlockable() && this.gameLogic.handleClick(event, this.upgrade_water)){
+            if(event.getAction() == MotionEvent.ACTION_DOWN){
+                this.gameLogic.upgradeWater(this.upgrade_water);
+            }
+            return true;
+        }else if(this.upgrade_hut.isUnlockable() && this.gameLogic.handleClick(event, this.upgrade_hut)){
+            if(event.getAction() == MotionEvent.ACTION_DOWN){
+                this.gameLogic.upgradeHut(this.upgrade_hut);
+            }
+            return true;
+        }else if(this.upgrade_wheel.isUnlockable() && this.gameLogic.handleClick(event, this.upgrade_wheel)){
+            if(event.getAction() == MotionEvent.ACTION_DOWN){
+                this.gameLogic.upgradeWheel(this.upgrade_wheel);
             }
             return true;
         }
