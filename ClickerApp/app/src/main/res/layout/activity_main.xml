@@ -10,46 +10,4 @@
     android:background="@color/primary_background"
     tools:context="com.example.mariam.clickerapp.MainActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/activity_main_layout"
-        android:orientation="vertical"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:padding="0dp"
-        android:background="@color/primary_background"
-        tools:context="com.example.mariam.clickerapp.MainActivity">
-
-        <TextView
-            android:id="@+id/activity_main_layout_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textSize="20dp"
-            android:text="@string/activity_main_layout_textview_text"
-        />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:padding="0dp"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/button_clicker"
-                android:layout_width="192dp"
-                android:layout_height="192dp"
-                android:gravity="center_horizontal"
-                android:background="@drawable/circle_button"
-                android:text="@string/button_click"
-                android:textAlignment="center"
-                android:onClick="startGame"
-                />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
 </LinearLayout>

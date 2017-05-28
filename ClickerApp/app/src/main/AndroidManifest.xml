@@ -18,6 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".GameLoopActivity"></activity>
+        <activity android:name=".TitleScreenActivity"></activity>
+
     </application>
 
 </manifest>

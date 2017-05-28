@@ -33,7 +33,7 @@ public class GameLogic {
         this.clickCount = 0;
         this.total_currency = 0.00;
         this.current_currency = 0.00;
-        this.clickValue = 0.01;
+        this.clickValue = 1.00;
         this.level = 0;
         this.unlockValue = 5.00;
     }

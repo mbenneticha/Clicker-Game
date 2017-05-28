@@ -162,10 +162,10 @@ public class GameLoop extends SurfaceView implements Runnable {
 
         this.hamster = new Hamster(context, this.WIDTH, this.HEIGHT);
 
-        this.upgrade_food = new Upgrade(context, "Food Dish", 1, R.drawable.fooddish_basic, R.drawable.fooddish_deluxe, R.drawable.fooddish_luxury, R.drawable.fooddish_golden, R.drawable.fooddish_not_unlocked, this.WIDTH, this.HEIGHT, 200, 150);
-        this.upgrade_water = new Upgrade(context, "Water Bottle", 2, R.drawable.waterbottle_basic, R.drawable.waterbottle_deluxe, R.drawable.waterbottle_luxury, R.drawable.waterbottle_golden, R.drawable.waterbottle_not_unlocked, this.WIDTH, this.HEIGHT, 200, 200);
-        this.upgrade_hut = new Upgrade(context, "Hamster Hut", 3, R.drawable.hut_basic, R.drawable.hut_deluxe, R.drawable.hut_luxury, R.drawable.hut_golden, R.drawable.hut_not_unlocked, this.WIDTH, this.HEIGHT, 200, 200);
-        this.upgrade_wheel = new Upgrade(context, "Hamster Wheel", 4, R.drawable.wheel_basic, R.drawable.wheel_deluxe, R.drawable.wheel_luxury, R.drawable.wheel_golden, R.drawable.wheel_not_unlocked, this.WIDTH, this.HEIGHT, 200, 200);
+        this.upgrade_food = new Upgrade(context, "Food Dish", 1, R.drawable.fooddish_basic, R.drawable.fooddish_deluxe, R.drawable.fooddish_luxury, R.drawable.fooddish_golden, R.drawable.fooddish_not_unlocked, R.drawable.fooddish_purchase, this.WIDTH, this.HEIGHT, 200, 150);
+        this.upgrade_water = new Upgrade(context, "Water Bottle", 2, R.drawable.waterbottle_basic, R.drawable.waterbottle_deluxe, R.drawable.waterbottle_luxury, R.drawable.waterbottle_golden, R.drawable.waterbottle_not_unlocked, R.drawable.fooddish_purchase, this.WIDTH, this.HEIGHT, 200, 200);
+        this.upgrade_hut = new Upgrade(context, "Hamster Hut", 3, R.drawable.hut_basic, R.drawable.hut_deluxe, R.drawable.hut_luxury, R.drawable.hut_golden, R.drawable.hut_not_unlocked, R.drawable.fooddish_purchase, this.WIDTH, this.HEIGHT, 200, 200);
+        this.upgrade_wheel = new Upgrade(context, "Hamster Wheel", 4, R.drawable.wheel_basic, R.drawable.wheel_deluxe, R.drawable.wheel_luxury, R.drawable.wheel_golden, R.drawable.wheel_not_unlocked, R.drawable.fooddish_purchase, this.WIDTH, this.HEIGHT, 250, 250);
 
 
         surfaceHolder = getHolder();

@@ -18,9 +18,9 @@ public class Upgrade extends Button{
     public boolean isUnlockable;
     public int upgradeLevel;
     private boolean isUnlocked;
-    private Bitmap image_Basic, image_Deluxe, image_Luxury, image_Gold, image_Locked;
+    private Bitmap image_Basic, image_Deluxe, image_Luxury, image_Gold, image_Locked, image_purchase;
 
-    public Upgrade(Context context, String upgradeName, int upgradeId, int image_Basic, int image_Deluxe, int image_Luxury, int image_Gold, int image_Locked, int canvasWidth, int canvasHeight, int width, int height) {
+    public Upgrade(Context context, String upgradeName, int upgradeId, int image_Basic, int image_Deluxe, int image_Luxury, int image_Gold, int image_Locked, int image_purchase_background, int canvasWidth, int canvasHeight, int width, int height) {
         super(context, upgradeName, upgradeId, image_Basic, image_Locked, width, height);
         this.isUnlockable = false;
         this.isUnlocked = false;
@@ -30,13 +30,13 @@ public class Upgrade extends Button{
         this.image_Luxury = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), image_Luxury), width, height, false);
         this.image_Gold = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), image_Gold), width, height, false);
         this.image_Locked = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), image_Locked), width, height, false);
-
+        this.image_purchase = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), image_purchase_background), width, height, false);
         int xPos = 0, yPos = 0;
 
         //food dish
         if (upgradeId == 1){
             xPos = ((canvasWidth / 8) * 6) - (width / 2) - 20;
-            yPos = (canvasHeight / 8) + height + 265;
+            yPos = (canvasHeight / 8) + height + 400;
         }
         //water bottle
         if (upgradeId == 2){
@@ -46,12 +46,12 @@ public class Upgrade extends Button{
         //hut
         if (upgradeId == 3){
             xPos = ((canvasWidth / 8) * 2) - (width / 2) + 40;
-            yPos = (canvasHeight / 8) + height + 185;
+            yPos = (canvasHeight / 8) + height + 325;
         }
         //wheel
         if (upgradeId == 4){
             xPos = ((canvasWidth / 8) * 4) - (width / 2);
-            yPos = (canvasHeight / 8) + height ; //+ 20
+            yPos = (canvasHeight / 8) + height - 20;
         }
 
         this.setXPos(xPos);
