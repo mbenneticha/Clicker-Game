@@ -3,6 +3,7 @@ package com.example.mariam.clickerapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import java.lang.reflect.Field;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static java.security.AccessController.getContext;
+
 public class MainActivity extends AppCompatActivity {
 
     private boolean onTitle;
@@ -30,7 +33,15 @@ public class MainActivity extends AppCompatActivity {
         song.start();
         song.setLooping(true);
         this.onTitle = true;
-        startActivityForResult(new Intent(this, TitleScreenActivity.class), 1);
+
+        SharedPreferences prefs = this.getSharedPreferences(
+                "com.example.mariam.clickerapp", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        if(!prefs.contains("initialized")) {
+            startActivityForResult(new Intent(this, TitleScreenActivity.class), 1);
+        } else {
+            this.startGame();
+        }
 
     }
 

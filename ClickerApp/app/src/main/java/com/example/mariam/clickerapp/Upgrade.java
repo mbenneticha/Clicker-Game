@@ -85,7 +85,7 @@ public class Upgrade extends Button{
     // 2 = deluxe
     // 3 = luxury
     // 4 = gold
-    public void unlockUpgrade(int unlock_number, Upgrade upgrade){
+    public void unlockUpgrade(int unlock_number){
 
         if (unlock_number == 1 && this.isUnlockable()){
             this.setImageBasic();

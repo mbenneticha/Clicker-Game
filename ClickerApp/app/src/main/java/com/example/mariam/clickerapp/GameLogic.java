@@ -6,6 +6,8 @@ import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
+
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -36,7 +38,7 @@ public class GameLogic {
         this.current_currency = 0.00;
         this.clickValue = 0.52;
         this.level = 0;
-        this.unlockValue = 5;
+        this.unlockValue = 1;
         this.foodLevel = 0;
         this.waterLevel = 0;
         this.wheelLevel = 0;
@@ -76,17 +78,15 @@ public class GameLogic {
 
     /*CURRENCY LOGIC */
     public double getTotalCurrency(){
-        NumberFormat nf = NumberFormat.getInstance(); // get instance
-        nf.setMaximumFractionDigits(2); // set decimal places
-        Double tot_curr = new Double(nf.format(this.total_currency));
+        DecimalFormat df = new DecimalFormat("0.00");
+        Double tot_curr = new Double(df.format(this.total_currency));
         return tot_curr;
     }
     public void setTotalCurrency(double value) { this.total_currency = value; }
 
     public double getCurrentCurrency(){
-        NumberFormat nf = NumberFormat.getInstance(); // get instance
-        nf.setMaximumFractionDigits(2); // set decimal places
-        Double cur_curr = new Double(nf.format(this.current_currency));
+        DecimalFormat df = new DecimalFormat("0.00");
+        Double cur_curr = new Double(df.format(this.current_currency));
         return cur_curr;
     }
 
@@ -256,69 +256,75 @@ public class GameLogic {
     public void upgradeFood(Upgrade upgrade_food){
         foodLevel = upgrade_food.getUpgradeLevel();
         switch (foodLevel){
-            case 0:
-                if (this.current_currency >= foodCost[foodLevel]){
-                    this.current_currency -= foodCost[foodLevel];
-                    upgrade_food.unlockUpgrade(1, upgrade_food); //set to basic image
+            case 0: {
+                if (this.current_currency >= this.foodCost[foodLevel]) {
+                    this.current_currency -= this.foodCost[foodLevel];
+                    upgrade_food.unlockUpgrade(1); //set to basic image
                     upgrade_food.incrementUpgradeLevel();
-                    //upgrade_food.setImageBasic(); --try this...not working
+                    upgrade_food.setImageBasic();
                     Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask()
-                    {
-                        public void run()
-                        {
-                            GameLogic.this.total_currency += clickValues[0];
-                            GameLogic.this.current_currency += clickValues[0];
+                    timer.scheduleAtFixedRate(new TimerTask() {
+                        public void run() {
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[0];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[0];
                         }
                     }, 0, 1000);
                 }
-            case 1:
-                if (this.current_currency >= foodCost[foodLevel]){
-                    this.current_currency -= foodCost[foodLevel];
-                    upgrade_food.unlockUpgrade(2, upgrade_food); //set to deluxe image -- not working
-                    upgrade_food.incrementUpgradeLevel();
-                    Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask()
-                    {
-                        public void run()
-                        {
-                            GameLogic.this.total_currency += clickValues[5];
-                            GameLogic.this.current_currency += clickValues[5];
-                        }
-                    }, 0, 1000);
-                }
-            case 2:
-                if (this.current_currency >= foodCost[foodLevel]){
-                    this.current_currency -= foodCost[foodLevel];
-                    upgrade_food.unlockUpgrade(3, upgrade_food); //set to luxury image -- not working
+                break;
+            }
+            case 1: {
+                if (this.current_currency >= this.foodCost[foodLevel]){
+                    this.current_currency -= this.foodCost[foodLevel];
+                    upgrade_food.unlockUpgrade(2); //set to deluxe image -- not working
                     upgrade_food.incrementUpgradeLevel();
                     Timer timer = new Timer();
                     timer.scheduleAtFixedRate(new TimerTask()
                     {
                         public void run()
                         {
-                            GameLogic.this.total_currency += clickValues[10];
-                            GameLogic.this.current_currency += clickValues[10];
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[5];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[5];
                         }
                     }, 0, 1000);
                 }
-            case 3:
-                if (this.current_currency >= foodCost[foodLevel]){
-                    this.current_currency -= foodCost[foodLevel];
-                    upgrade_food.unlockUpgrade(4, upgrade_food); //set to gold image -- not working
+                break;
+            }
+            case 2: {
+                if (this.current_currency >= this.foodCost[foodLevel]){
+                    this.current_currency -= this.foodCost[foodLevel];
+                    upgrade_food.unlockUpgrade(3); //set to luxury image -- not working
                     upgrade_food.incrementUpgradeLevel();
                     Timer timer = new Timer();
                     timer.scheduleAtFixedRate(new TimerTask()
                     {
                         public void run()
                         {
-                            GameLogic.this.total_currency += clickValues[15];
-                            GameLogic.this.current_currency += clickValues[15];
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[10];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[10];
                         }
                     }, 0, 1000);
                 }
+                break;
+            }
+            case 3: {
+                if (this.current_currency >= this.foodCost[foodLevel]){
+                    this.current_currency -= this.foodCost[foodLevel];
+                    upgrade_food.unlockUpgrade(4); //set to gold image -- not working
+                    upgrade_food.incrementUpgradeLevel();
+                    Timer timer = new Timer();
+                    timer.scheduleAtFixedRate(new TimerTask()
+                    {
+                        public void run()
+                        {
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[15];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[15];
+                        }
+                    }, 0, 1000);
+                }
+                break;
+            }
             default:
-                upgrade_food.unlockUpgrade(0, upgrade_food); //set to locked image -- not working
+             //   upgrade_food.unlockUpgrade(0, upgrade_food); //set to locked image -- not working
                 break;
         }
     }
@@ -326,69 +332,75 @@ public class GameLogic {
     //Water Bottle
     public void upgradeWater(Upgrade upgrade_water){
         waterLevel = upgrade_water.getUpgradeLevel();
-        switch (waterLevel){
-            case 0:
-                if (this.current_currency >= waterCost[waterLevel]){
-                    this.current_currency -= waterCost[waterLevel];
-                    upgrade_water.unlockUpgrade(1, upgrade_water); //set to basic image
+        switch (waterLevel) {
+            case 0: {
+                if (this.current_currency >= this.waterCost[waterLevel]) {
+                        this.current_currency -= this.waterCost[waterLevel];
+                        upgrade_water.unlockUpgrade(1); //set to basic image
+                        upgrade_water.incrementUpgradeLevel();
+                        Timer timer = new Timer();
+                        timer.scheduleAtFixedRate(new TimerTask() {
+                            public void run() {
+                                GameLogic.this.total_currency += GameLogic.this.clickValues[1];
+                                GameLogic.this.current_currency += GameLogic.this.clickValues[1];
+                            }
+                        }, 0, 1000);
+                }
+                break;
+            }
+            case 1: {
+                if (this.current_currency >= this.waterCost[waterLevel]){
+                    this.current_currency -= this.waterCost[waterLevel];
+                    upgrade_water.unlockUpgrade(2); //set to deluxe image -- not working
                     upgrade_water.incrementUpgradeLevel();
                     Timer timer = new Timer();
                     timer.scheduleAtFixedRate(new TimerTask()
                     {
                         public void run()
                         {
-                            GameLogic.this.total_currency += clickValues[1];
-                            GameLogic.this.current_currency += clickValues[1];
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[6];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[6];
                         }
                     }, 0, 1000);
                 }
-            case 1:
-                if (this.current_currency >= waterCost[waterLevel]){
-                    this.current_currency -= waterCost[waterLevel];
-                    upgrade_water.unlockUpgrade(2, upgrade_water); //set to deluxe image -- not working
+                break;
+            }
+            case 2: {
+                if (this.current_currency >= this.waterCost[waterLevel]){
+                    this.current_currency -= this.waterCost[waterLevel];
+                    upgrade_water.unlockUpgrade(3); //set to luxury image -- not working
                     upgrade_water.incrementUpgradeLevel();
                     Timer timer = new Timer();
                     timer.scheduleAtFixedRate(new TimerTask()
                     {
                         public void run()
                         {
-                            GameLogic.this.total_currency += clickValues[6];
-                            GameLogic.this.current_currency += clickValues[6];
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[11];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[11];
                         }
                     }, 0, 1000);
                 }
-            case 2:
-                if (this.current_currency >= waterCost[waterLevel]){
-                    this.current_currency -= waterCost[waterLevel];
-                    upgrade_water.unlockUpgrade(3, upgrade_water); //set to luxury image -- not working
+                break;
+            }
+            case 3: {
+                if (this.current_currency >= this.waterCost[waterLevel]){
+                    this.current_currency -= this.waterCost[waterLevel];
+                    upgrade_water.unlockUpgrade(4); //set to gold image -- not working
                     upgrade_water.incrementUpgradeLevel();
                     Timer timer = new Timer();
                     timer.scheduleAtFixedRate(new TimerTask()
                     {
                         public void run()
                         {
-                            GameLogic.this.total_currency += clickValues[11];
-                            GameLogic.this.current_currency += clickValues[11];
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[16];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[16];
                         }
                     }, 0, 1000);
                 }
-            case 3:
-                if (this.current_currency >= waterCost[waterLevel]){
-                    this.current_currency -= waterCost[waterLevel];
-                    upgrade_water.unlockUpgrade(4, upgrade_water); //set to gold image -- not working
-                    upgrade_water.incrementUpgradeLevel();
-                    Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask()
-                    {
-                        public void run()
-                        {
-                            GameLogic.this.total_currency += clickValues[16];
-                            GameLogic.this.current_currency += clickValues[16];
-                        }
-                    }, 0, 1000);
-                }
+                break;
+            }
             default:
-                upgrade_water.unlockUpgrade(0, upgrade_water); //set to locked image -- not working
+            //    upgrade_water.unlockUpgrade(0, upgrade_water); //set to locked image -- not working
                 break;
         }
     }
@@ -397,69 +409,78 @@ public class GameLogic {
     public void upgradeHut(Upgrade upgrade_hut){
         hutLevel = upgrade_hut.getUpgradeLevel();
         switch (hutLevel){
-            case 0:
-                if (this.current_currency >= hutCost[hutLevel]){
-                    this.current_currency -= hutCost[hutLevel];
-                    upgrade_hut.unlockUpgrade(1, upgrade_hut); //set to basic image
+            case 0: {
+                if (this.current_currency >= this.hutCost[hutLevel]){
+                    this.current_currency -= this.hutCost[hutLevel];
+                    upgrade_hut.unlockUpgrade(1); //set to basic image
                     upgrade_hut.incrementUpgradeLevel();
                     Timer timer = new Timer();
                     timer.scheduleAtFixedRate(new TimerTask()
                     {
                         public void run()
                         {
-                            GameLogic.this.total_currency += clickValues[2];
-                            GameLogic.this.current_currency += clickValues[2];
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[2];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[2];
                         }
                     }, 0, 1000);
                 }
-            case 1:
-                if (this.current_currency >= hutCost[hutLevel]){
-                    this.current_currency -= hutCost[hutLevel];
-                    upgrade_hut.unlockUpgrade(2, upgrade_hut); //set to deluxe image -- not working
-                    upgrade_hut.incrementUpgradeLevel();
-                    Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask()
-                    {
-                        public void run()
-                        {
-                            GameLogic.this.total_currency += clickValues[7];
-                            GameLogic.this.current_currency += clickValues[7];
-                        }
-                    }, 0, 1000);
-                }
-            case 2:
-                if (this.current_currency >= hutCost[hutLevel]){
-                    this.current_currency -= hutCost[hutLevel];
-                    upgrade_hut.unlockUpgrade(3, upgrade_hut); //set to luxury image -- not working
-                    upgrade_hut.incrementUpgradeLevel();
-                    Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask()
-                    {
-                        public void run()
-                        {
-                            GameLogic.this.total_currency += clickValues[12];
-                            GameLogic.this.current_currency += clickValues[12];
-                        }
-                    }, 0, 1000);
-                }
-            case 3:
-                if (this.current_currency >= hutCost[hutLevel]){
-                    this.current_currency -= hutCost[hutLevel];
-                    upgrade_hut.unlockUpgrade(4, upgrade_hut); //set to gold image -- not working
-                    upgrade_hut.incrementUpgradeLevel();
-                    Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask()
-                    {
-                        public void run()
-                        {
-                            GameLogic.this.total_currency += clickValues[17];
-                            GameLogic.this.current_currency += clickValues[17];
-                        }
-                    }, 0, 1000);
-                }
-            default:
-                upgrade_hut.unlockUpgrade(0, upgrade_hut); //set to locked image -- not working
                 break;
+            }
+            case 1: {
+                if (this.current_currency >= this.hutCost[hutLevel]){
+                    this.current_currency -= this.hutCost[hutLevel];
+                    upgrade_hut.unlockUpgrade(2); //set to deluxe image -- not working
+                    upgrade_hut.incrementUpgradeLevel();
+                    Timer timer = new Timer();
+                    timer.scheduleAtFixedRate(new TimerTask()
+                    {
+                        public void run()
+                        {
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[7];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[7];
+                        }
+                    }, 0, 1000);
+                }
+                break;
+            }
+            case 2: {
+                if (this.current_currency >= this.hutCost[hutLevel]){
+                    this.current_currency -= this.hutCost[hutLevel];
+                    upgrade_hut.unlockUpgrade(3); //set to luxury image -- not working
+                    upgrade_hut.incrementUpgradeLevel();
+                    Timer timer = new Timer();
+                    timer.scheduleAtFixedRate(new TimerTask()
+                    {
+                        public void run()
+                        {
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[12];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[12];
+                        }
+                    }, 0, 1000);
+                }
+                break;
+            }
+            case 3: {
+                if (this.current_currency >= this.hutCost[hutLevel]){
+                    this.current_currency -= this.hutCost[hutLevel];
+                    upgrade_hut.unlockUpgrade(4); //set to gold image -- not working
+                    upgrade_hut.incrementUpgradeLevel();
+                    Timer timer = new Timer();
+                    timer.scheduleAtFixedRate(new TimerTask()
+                    {
+                        public void run()
+                        {
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[17];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[17];
+                        }
+                    }, 0, 1000);
+                }
+                break;
+            }
+            default: {
+                upgrade_hut.unlockUpgrade(0); //set to locked image -- not working
+                break;
+            }
         }
     }
 
@@ -467,10 +488,10 @@ public class GameLogic {
     public void upgradeWheel(Upgrade upgrade_wheel){
         wheelLevel = upgrade_wheel.getUpgradeLevel();
         switch (wheelLevel){
-            case 0:
-                if (this.current_currency >= wheelCost[wheelLevel]){
-                    this.current_currency -= wheelCost[wheelLevel];
-                    upgrade_wheel.unlockUpgrade(1, upgrade_wheel); //set to basic image
+            case 0: {
+                if (this.current_currency >= this.wheelCost[wheelLevel]){
+                    this.current_currency -= this.wheelCost[wheelLevel];
+                    upgrade_wheel.unlockUpgrade(1); //set to basic image
                     upgrade_wheel.incrementUpgradeLevel();
                     //upgrade_food.setImageBasic(); --try this...not working
                     Timer timer = new Timer();
@@ -478,59 +499,68 @@ public class GameLogic {
                     {
                         public void run()
                         {
-                            GameLogic.this.total_currency += clickValues[3];
-                            GameLogic.this.current_currency += clickValues[3];
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[3];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[3];
                         }
                     }, 0, 1000);
                 }
-            case 1:
-                if (this.current_currency >= wheelCost[wheelLevel]){
-                    this.current_currency -= wheelCost[wheelLevel];
-                    upgrade_wheel.unlockUpgrade(2, upgrade_wheel); //set to deluxe image -- not working
-                    upgrade_wheel.incrementUpgradeLevel();
-                    Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask()
-                    {
-                        public void run()
-                        {
-                            GameLogic.this.total_currency += clickValues[8];
-                            GameLogic.this.current_currency += clickValues[8];
-                        }
-                    }, 0, 1000);
-                }
-            case 2:
-                if (this.current_currency >= wheelCost[wheelLevel]){
-                    this.current_currency -= wheelCost[wheelLevel];
-                    upgrade_wheel.unlockUpgrade(3, upgrade_wheel); //set to luxury image -- not working
-                    upgrade_wheel.incrementUpgradeLevel();
-                    Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask()
-                    {
-                        public void run()
-                        {
-                            GameLogic.this.total_currency += clickValues[13];
-                            GameLogic.this.current_currency += clickValues[13];
-                        }
-                    }, 0, 1000);
-                }
-            case 3:
-                if (this.current_currency >= wheelCost[wheelLevel]){
-                    this.current_currency -= wheelCost[wheelLevel];
-                    upgrade_wheel.unlockUpgrade(4, upgrade_wheel); //set to gold image -- not working
-                    upgrade_wheel.incrementUpgradeLevel();
-                    Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask()
-                    {
-                        public void run()
-                        {
-                            GameLogic.this.total_currency += clickValues[18];
-                            GameLogic.this.current_currency += clickValues[18];
-                        }
-                    }, 0, 1000);
-                }
-            default:
-                upgrade_wheel.unlockUpgrade(0, upgrade_wheel); //set to locked image -- not working
                 break;
+            }
+            case 1: {
+                if (this.current_currency >= this.wheelCost[wheelLevel]){
+                    this.current_currency -= this.wheelCost[wheelLevel];
+                    upgrade_wheel.unlockUpgrade(2); //set to deluxe image -- not working
+                    upgrade_wheel.incrementUpgradeLevel();
+                    Timer timer = new Timer();
+                    timer.scheduleAtFixedRate(new TimerTask()
+                    {
+                        public void run()
+                        {
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[8];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[8];
+                        }
+                    }, 0, 1000);
+                }
+                break;
+            }
+            case 2: {
+                if (this.current_currency >= this.wheelCost[wheelLevel]){
+                    this.current_currency -= this.wheelCost[wheelLevel];
+                    upgrade_wheel.unlockUpgrade(3); //set to luxury image -- not working
+                    upgrade_wheel.incrementUpgradeLevel();
+                    Timer timer = new Timer();
+                    timer.scheduleAtFixedRate(new TimerTask()
+                    {
+                        public void run()
+                        {
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[13];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[13];
+                        }
+                    }, 0, 1000);
+                }
+                break;
+            }
+            case 3: {
+                if (this.current_currency >= this.wheelCost[wheelLevel]){
+                    this.current_currency -= this.wheelCost[wheelLevel];
+                    upgrade_wheel.unlockUpgrade(4); //set to gold image -- not working
+                    upgrade_wheel.incrementUpgradeLevel();
+                    Timer timer = new Timer();
+                    timer.scheduleAtFixedRate(new TimerTask()
+                    {
+                        public void run()
+                        {
+                            GameLogic.this.total_currency += GameLogic.this.clickValues[18];
+                            GameLogic.this.current_currency += GameLogic.this.clickValues[18];
+                        }
+                    }, 0, 1000);
+                }
+                break;
+            }
+            default: {
+                upgrade_wheel.unlockUpgrade(0); //set to locked image -- not working
+                break;
+            }
         }
     }
 

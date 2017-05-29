@@ -98,8 +98,8 @@ public class TitleScreen extends SurfaceView implements Runnable{
 
             paint.setTextSize(125);
             canvas.drawText("New Game", 975, 1350, paint);
-            canvas.drawText("Load Game", 975, 1650, paint);
-            canvas.drawText("Options", 975, 1950, paint);
+//            canvas.drawText("Load Game", 975, 1650, paint);
+//            canvas.drawText("Options", 975, 1950, paint);
 
 
 

@@ -285,6 +285,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         SharedPreferences prefs = getContext().getSharedPreferences(
                 "com.example.mariam.clickerapp", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("initialized", true);
         editor.putInt("lvl", gameLogic.getLevel());
         editor.putInt("clicks", gameLogic.getClickCount());
         editor.putLong("clickval", Double.doubleToRawLongBits(gameLogic.getClickValue()));
@@ -375,22 +376,22 @@ public class GameLoop extends SurfaceView implements Runnable {
                 this.gameLogic.handleAbility4(this.ability_4);
             }
             return true;
-        } else if(this.upgrade_food.isUnlockable() && this.gameLogic.handleClick(event, this.upgrade_food)){
+        } else if((!this.upgrade_food.isUnlocked()) && (this.upgrade_food.isUnlockable())){
             if(event.getAction() == MotionEvent.ACTION_DOWN){
                 this.gameLogic.upgradeFood(this.upgrade_food);
             }
             return true;
-        }else if(this.upgrade_water.isUnlockable() && this.gameLogic.handleClick(event, this.upgrade_water)){
+        }else if((!this.upgrade_water.isUnlocked()) && (this.upgrade_water.isUnlockable())){
             if(event.getAction() == MotionEvent.ACTION_DOWN){
                 this.gameLogic.upgradeWater(this.upgrade_water);
             }
             return true;
-        }else if(this.upgrade_hut.isUnlockable() && this.gameLogic.handleClick(event, this.upgrade_hut)){
+        }else if((!this.upgrade_hut.isUnlocked()) && (this.upgrade_hut.isUnlockable())){
             if(event.getAction() == MotionEvent.ACTION_DOWN){
                 this.gameLogic.upgradeHut(this.upgrade_hut);
             }
             return true;
-        }else if(this.upgrade_wheel.isUnlockable() && this.gameLogic.handleClick(event, this.upgrade_wheel)){
+        }else if((!this.upgrade_wheel.isUnlocked()) && (this.upgrade_wheel.isUnlockable())){
             if(event.getAction() == MotionEvent.ACTION_DOWN){
                 this.gameLogic.upgradeWheel(this.upgrade_wheel);
             }
