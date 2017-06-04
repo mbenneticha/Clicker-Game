@@ -221,6 +221,14 @@ public class GameLogic {
         this.wheelLevel = value;
     }
 
+    public double getFoodCost() { return foodCost[foodLevel]; }
+
+    public double getWaterCost() { return waterCost[waterLevel]; }
+
+    public double getHutCost() { return hutCost[hutLevel]; }
+
+    public double getWheelCost() { return wheelCost[wheelLevel]; }
+
 
     public void upgradeFood(Upgrade upgrade_food){
         foodLevel = upgrade_food.getUpgradeLevel();
