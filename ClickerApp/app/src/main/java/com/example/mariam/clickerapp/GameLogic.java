@@ -22,7 +22,7 @@ public class GameLogic {
     total_currency = overall earned $ amount
     current_currency = $ amount altered by spending
      */
-    private int clickCount, level, foodLevel, waterLevel, wheelLevel, hutLevel;
+    private int clickCount, level, foodLevel, waterLevel, wheelLevel, hutLevel, multiplier;
     private double clickValue, unlockValue, total_currency, current_currency;
 	double[] clickValues = new double[] { 0.02, 0.03, 0.09, 0.27, 0.81, 2.43, 3.65, 10.94, 32.81, 98.42, 295.25, 442.87, 1328.60, 3985.81, 11957.43, 35872.27, 71744.54, 215233.61, 645700.82, 1937102.45, 5811307.34  };
     double[] unlockValues = new double[] { 0, 5, 15, 45, 135, 405, 1215, 3645, 10935, 32805, 98415, 295245, 885735, 2657205, 7971615, 23914845, 71744535, 215233505, 645700815, 1937102445, (1937102445*3), (1937102445*6)  };
@@ -43,6 +43,7 @@ public class GameLogic {
         this.waterLevel = 0;
         this.wheelLevel = 0;
         this.hutLevel = 0;
+        this.multiplier = 1;
     }
 
 
@@ -51,8 +52,8 @@ public class GameLogic {
     // Shorted here for ease of use
     public void icc(){
         this.clickCount++;
-        this.total_currency += clickValue;
-        this.current_currency += clickValue;
+        this.total_currency += (clickValue*multiplier);
+        this.current_currency += (clickValue*multiplier);
     }
 
     public void setClickValue(double value){
@@ -74,6 +75,10 @@ public class GameLogic {
     public void setClickCount(int value){
         this.clickCount = value;
     }
+
+    public int getMultiplier() { return this.multiplier; }
+
+    public void setMultiplier(int value) { this.multiplier = value; }
 
 
     /*CURRENCY LOGIC */
@@ -124,6 +129,24 @@ public class GameLogic {
         this.level++;
         this.unlockValue = unlockValues[this.level];
 		setClickValue(clickValues[this.level]);
+
+        if(this.level >= 20) {
+            gameCompleteReset();
+        }
+    }
+
+    public void gameCompleteReset() {
+        this.clickCount = 0;
+        this.total_currency = 0.00;
+        this.current_currency = 0.00;
+        this.clickValue = 0.52;
+        this.level = 0;
+        this.unlockValue = 1;
+        this.foodLevel = 0;
+        this.waterLevel = 0;
+        this.wheelLevel = 0;
+        this.hutLevel = 0;
+        this.multiplier = this.multiplier*2;
     }
 
 

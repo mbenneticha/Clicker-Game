@@ -354,6 +354,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         editor.putInt("hutlvl", gameLogic.getHutLevel());
         editor.putInt("wheellvl", gameLogic.getWheelLevel());
         editor.putLong("unlockValue", Double.doubleToRawLongBits(gameLogic.getUnlockValue()));
+        editor.putInt("multiplier", gameLogic.getMultiplier());
         editor.commit();
     }
 
@@ -362,6 +363,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         SharedPreferences prefs = getContext().getSharedPreferences(
                 "com.example.mariam.clickerapp", Context.MODE_PRIVATE);
         int defaultValue = 0;
+        int one = 1;
         long defaultLong = 0;
         long defaultUnlock = 5;
         double defaultClickVal = 0.50;  // CHANGE THIS FOR TESTING
@@ -375,6 +377,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         gameLogic.setHutLevel(prefs.getInt("hutlvl", defaultValue));
         gameLogic.setWheelLevel(prefs.getInt("wheellvl", defaultValue));
         gameLogic.setUnlockValue(Double.longBitsToDouble(prefs.getLong("unlockValue", defaultUnlock)));
+        gameLogic.setMultiplier(prefs.getInt("multiplier",one));
 
         this.loopRunning = true;
         this.gameLoopThread = new Thread(this);
