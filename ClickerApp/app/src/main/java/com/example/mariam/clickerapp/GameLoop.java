@@ -379,6 +379,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         gameLogic.setUnlockValue(Double.longBitsToDouble(prefs.getLong("unlockValue", defaultUnlock)));
         gameLogic.setMultiplier(prefs.getInt("multiplier",one));
 
+        gameLogic.upgradeCheck(this.upgrade_food, this.upgrade_water, this.upgrade_hut, this.upgrade_wheel);
         this.loopRunning = true;
         this.gameLoopThread = new Thread(this);
         this.gameLoopThread.start();

@@ -76,6 +76,7 @@ public class Upgrade extends Button{
     public boolean isUnlocked(){return this.isUnlocked;}
 
     public int getUpgradeLevel(){return this.upgradeLevel;}
+    public void setUpgradeLevel(int value) { this.upgradeLevel = value; }
     public void incrementUpgradeLevel(){ this.upgradeLevel ++;}
 
 
