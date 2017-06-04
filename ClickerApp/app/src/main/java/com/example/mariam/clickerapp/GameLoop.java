@@ -31,6 +31,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
@@ -291,16 +292,32 @@ public class GameLoop extends SurfaceView implements Runnable {
             canvas.drawBitmap(this.upgrade_wheel.getCurrentImage(), this.upgrade_wheel.getXPos(), this.upgrade_wheel.getYPos(), null);
 
 
+            DecimalFormat df = new DecimalFormat("0.00E00");
+
             paint.setStyle(Paint.Style.FILL);
             paint.setStrokeWidth(1);
             paint.setColor(Color.BLACK);
             paint.setTextSize(100);
             paint.setTypeface(this.sueEllenTypeface);
-            canvas.drawText(Double.toString(this.gameLogic.getTotalCurrency()), ((this.WIDTH / 5)), 220, paint);
+
+            double totalcurrency = this.gameLogic.getTotalCurrency();
+            if (totalcurrency > 100000) {
+                canvas.drawText(df.format(totalcurrency).toLowerCase(), ((this.WIDTH / 5)), 220, paint);
+            }
+            else {
+                canvas.drawText(Double.toString(this.gameLogic.getTotalCurrency()), ((this.WIDTH / 5)), 220, paint);
+            }
+
             paint.setTextSize(100);
             canvas.drawText(Integer.toString(this.gameLogic.getLevel()), ((this.WIDTH / 2) - 22), 228, paint);
             paint.setTextSize(75);
-            canvas.drawText(Double.toString(this.gameLogic.getCurrentCurrency()), ((this.WIDTH / 5) * 3), 220, paint);
+            double currentcurrency = this.gameLogic.getCurrentCurrency();
+            if (currentcurrency > 100000) {
+                canvas.drawText(df.format(currentcurrency).toLowerCase(), ((this.WIDTH / 5) * 3), 220, paint);
+            }
+            else {
+                canvas.drawText(Double.toString(this.gameLogic.getCurrentCurrency()), ((this.WIDTH / 5) * 3), 220, paint);
+            }
 
             surfaceHolder.unlockCanvasAndPost(canvas);
         }
