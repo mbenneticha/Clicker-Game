@@ -153,60 +153,29 @@ public class GameLogic {
     }
 
     //ABILITY LOGIC
+
+    public void reActivateAbility(Ability ability){
+        ability.setToCharged();
+    }
     public void handleAbility1(final Ability ability1){
         this.clickValue = ability1.turnOnAbility(this.clickValue);
+        ability1.setToRecharging();
 
-        Timer ability1_Timer = new Timer();
-
-        TimerTask turnOff = new TimerTask(){
-            public void run() {
-                GameLogic.this.setClickValue(ability1.turnOffAbility(GameLogic.this.getClickValue()));
-            }
-        };
-
-        ability1_Timer.schedule(turnOff, 3000);
     }
 
     public void handleAbility2(final Ability ability2){
         this.clickValue = ability2.turnOnAbility(this.clickValue);
-
-        Timer ability1_Timer = new Timer();
-
-        TimerTask turnOff = new TimerTask(){
-            public void run() {
-                GameLogic.this.setClickValue(ability2.turnOffAbility(GameLogic.this.getClickValue()));
-            }
-        };
-
-        ability1_Timer.schedule(turnOff, 3000);
+        ability2.setToRecharging();
     }
 
     public void handleAbility3(final Ability ability3){
         this.clickValue = ability3.turnOnAbility(this.clickValue);
-
-        Timer ability1_Timer = new Timer();
-
-        TimerTask turnOff = new TimerTask(){
-            public void run() {
-                GameLogic.this.setClickValue(ability3.turnOffAbility(GameLogic.this.getClickValue()));
-            }
-        };
-
-        ability1_Timer.schedule(turnOff, 3000);
+        ability3.setToRecharging();
     }
 
     public void handleAbility4(final Ability ability4){
         this.clickValue = ability4.turnOnAbility(this.clickValue);
-
-        Timer ability1_Timer = new Timer();
-
-        TimerTask turnOff = new TimerTask(){
-            public void run() {
-                GameLogic.this.setClickValue(ability4.turnOffAbility(GameLogic.this.getClickValue()));
-            }
-        };
-
-        ability1_Timer.schedule(turnOff, 3000);
+        ability4.setToRecharging();
     }
 
     //UPGRADE LOGIC
