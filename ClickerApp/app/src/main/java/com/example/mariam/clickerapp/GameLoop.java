@@ -356,6 +356,8 @@ public class GameLoop extends SurfaceView implements Runnable {
         editor.putLong("unlockValue", Double.doubleToRawLongBits(gameLogic.getUnlockValue()));
         editor.putInt("multiplier", gameLogic.getMultiplier());
         editor.commit();
+
+        gameLogic.cancelAllTimers();
     }
 
     public void resume(){
