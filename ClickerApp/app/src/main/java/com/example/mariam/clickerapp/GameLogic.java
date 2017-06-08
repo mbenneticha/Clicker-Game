@@ -524,7 +524,7 @@ public class GameLogic {
         startFoodTimer(upgrade_food);
 
         // Reset and check upgrade water
-        upgrade_water.setUpgradeLevel(foodLevel);
+        upgrade_water.setUpgradeLevel(waterLevel);
         startWaterTimer(upgrade_water);
 
         // Reset and check upgrade hut
@@ -548,8 +548,8 @@ public class GameLogic {
     public void upgradeFood(Upgrade upgrade_food){
         switch (foodLevel){
             case 0: {
-                if (this.current_currency >= this.foodCost[foodLevel]) {
-                    this.current_currency -= this.foodCost[foodLevel];
+                if (this.current_currency >= foodCost[foodLevel]) {
+                    this.current_currency -= foodCost[foodLevel];
                     upgrade_food.unlockUpgrade(1); //set to basic image
                     upgrade_food.incrementUpgradeLevel();
                     foodLevel += 1;
@@ -558,8 +558,8 @@ public class GameLogic {
                 break;
             }
             case 1: {
-                if (this.current_currency >= this.foodCost[foodLevel]){
-                    this.current_currency -= this.foodCost[foodLevel];
+                if (this.current_currency >= foodCost[foodLevel]){
+                    this.current_currency -= foodCost[foodLevel];
                     upgrade_food.unlockUpgrade(2); //set to deluxe image -- not working
                     upgrade_food.incrementUpgradeLevel();
                     foodLevel += 1;
@@ -568,8 +568,8 @@ public class GameLogic {
                 break;
             }
             case 2: {
-                if (this.current_currency >= this.foodCost[foodLevel]){
-                    this.current_currency -= this.foodCost[foodLevel];
+                if (this.current_currency >= foodCost[foodLevel]){
+                    this.current_currency -= foodCost[foodLevel];
                     upgrade_food.unlockUpgrade(3); //set to luxury image -- not working
                     upgrade_food.incrementUpgradeLevel();
                     foodLevel += 1;
@@ -578,8 +578,8 @@ public class GameLogic {
                 break;
             }
             case 3: {
-                if (this.current_currency >= this.foodCost[foodLevel]){
-                    this.current_currency -= this.foodCost[foodLevel];
+                if (this.current_currency >= foodCost[foodLevel]){
+                    this.current_currency -= foodCost[foodLevel];
                     upgrade_food.unlockUpgrade(4); //set to gold image -- not working
                     upgrade_food.incrementUpgradeLevel();
                     foodLevel += 1;
@@ -597,8 +597,8 @@ public class GameLogic {
     public void upgradeWater(Upgrade upgrade_water){
         switch (waterLevel) {
             case 0: {
-                if (this.current_currency >= this.waterCost[waterLevel]) {
-                        this.current_currency -= this.waterCost[waterLevel];
+                if (this.current_currency >= waterCost[waterLevel]) {
+                        this.current_currency -= waterCost[waterLevel];
                         upgrade_water.unlockUpgrade(1); //set to basic image
                         upgrade_water.incrementUpgradeLevel();
                         waterLevel += 1;
@@ -607,8 +607,8 @@ public class GameLogic {
                 break;
             }
             case 1: {
-                if (this.current_currency >= this.waterCost[waterLevel]){
-                    this.current_currency -= this.waterCost[waterLevel];
+                if (this.current_currency >= waterCost[waterLevel]){
+                    this.current_currency -= waterCost[waterLevel];
                     upgrade_water.unlockUpgrade(2); //set to deluxe image -- not working
                     upgrade_water.incrementUpgradeLevel();
                     waterLevel += 1;
@@ -617,8 +617,8 @@ public class GameLogic {
                 break;
             }
             case 2: {
-                if (this.current_currency >= this.waterCost[waterLevel]){
-                    this.current_currency -= this.waterCost[waterLevel];
+                if (this.current_currency >= waterCost[waterLevel]){
+                    this.current_currency -= waterCost[waterLevel];
                     upgrade_water.unlockUpgrade(3); //set to luxury image -- not working
                     upgrade_water.incrementUpgradeLevel();
                     waterLevel += 1;
@@ -627,8 +627,8 @@ public class GameLogic {
                 break;
             }
             case 3: {
-                if (this.current_currency >= this.waterCost[waterLevel]){
-                    this.current_currency -= this.waterCost[waterLevel];
+                if (this.current_currency >= waterCost[waterLevel]){
+                    this.current_currency -= waterCost[waterLevel];
                     upgrade_water.unlockUpgrade(4); //set to gold image -- not working
                     upgrade_water.incrementUpgradeLevel();
                     waterLevel += 1;
@@ -646,8 +646,8 @@ public class GameLogic {
     public void upgradeHut(Upgrade upgrade_hut){
         switch (hutLevel){
             case 0: {
-                if (this.current_currency >= this.hutCost[hutLevel]){
-                    this.current_currency -= this.hutCost[hutLevel];
+                if (this.current_currency >= hutCost[hutLevel]){
+                    this.current_currency -= hutCost[hutLevel];
                     upgrade_hut.unlockUpgrade(1); //set to basic image
                     upgrade_hut.incrementUpgradeLevel();
                     hutLevel += 1;
@@ -656,8 +656,8 @@ public class GameLogic {
                 break;
             }
             case 1: {
-                if (this.current_currency >= this.hutCost[hutLevel]){
-                    this.current_currency -= this.hutCost[hutLevel];
+                if (this.current_currency >= hutCost[hutLevel]){
+                    this.current_currency -= hutCost[hutLevel];
                     upgrade_hut.unlockUpgrade(2); //set to deluxe image -- not working
                     upgrade_hut.incrementUpgradeLevel();
                     hutLevel += 1;
@@ -666,8 +666,8 @@ public class GameLogic {
                 break;
             }
             case 2: {
-                if (this.current_currency >= this.hutCost[hutLevel]){
-                    this.current_currency -= this.hutCost[hutLevel];
+                if (this.current_currency >= hutCost[hutLevel]){
+                    this.current_currency -= hutCost[hutLevel];
                     upgrade_hut.unlockUpgrade(3); //set to luxury image -- not working
                     upgrade_hut.incrementUpgradeLevel();
                     hutLevel += 1;
@@ -676,8 +676,8 @@ public class GameLogic {
                 break;
             }
             case 3: {
-                if (this.current_currency >= this.hutCost[hutLevel]){
-                    this.current_currency -= this.hutCost[hutLevel];
+                if (this.current_currency >= hutCost[hutLevel]){
+                    this.current_currency -= hutCost[hutLevel];
                     upgrade_hut.unlockUpgrade(4); //set to gold image -- not working
                     upgrade_hut.incrementUpgradeLevel();
                     hutLevel += 1;
@@ -696,8 +696,8 @@ public class GameLogic {
     public void upgradeWheel(Upgrade upgrade_wheel){
         switch (wheelLevel){
             case 0: {
-                if (this.current_currency >= this.wheelCost[wheelLevel]){
-                    this.current_currency -= this.wheelCost[wheelLevel];
+                if (this.current_currency >= wheelCost[wheelLevel]){
+                    this.current_currency -= wheelCost[wheelLevel];
                     upgrade_wheel.unlockUpgrade(1); //set to basic image
                     upgrade_wheel.incrementUpgradeLevel();
                     wheelLevel += 1;
@@ -706,8 +706,8 @@ public class GameLogic {
                 break;
             }
             case 1: {
-                if (this.current_currency >= this.wheelCost[wheelLevel]){
-                    this.current_currency -= this.wheelCost[wheelLevel];
+                if (this.current_currency >= wheelCost[wheelLevel]){
+                    this.current_currency -= wheelCost[wheelLevel];
                     upgrade_wheel.unlockUpgrade(2); //set to deluxe image -- not working
                     upgrade_wheel.incrementUpgradeLevel();
                     wheelLevel += 1;
@@ -716,8 +716,8 @@ public class GameLogic {
                 break;
             }
             case 2: {
-                if (this.current_currency >= this.wheelCost[wheelLevel]){
-                    this.current_currency -= this.wheelCost[wheelLevel];
+                if (this.current_currency >= wheelCost[wheelLevel]){
+                    this.current_currency -= wheelCost[wheelLevel];
                     upgrade_wheel.unlockUpgrade(3); //set to luxury image -- not working
                     upgrade_wheel.incrementUpgradeLevel();
                     wheelLevel += 1;
@@ -726,8 +726,8 @@ public class GameLogic {
                 break;
             }
             case 3: {
-                if (this.current_currency >= this.wheelCost[wheelLevel]){
-                    this.current_currency -= this.wheelCost[wheelLevel];
+                if (this.current_currency >= wheelCost[wheelLevel]){
+                    this.current_currency -= wheelCost[wheelLevel];
                     upgrade_wheel.unlockUpgrade(4); //set to gold image -- not working
                     upgrade_wheel.incrementUpgradeLevel();
                     wheelLevel += 1;
