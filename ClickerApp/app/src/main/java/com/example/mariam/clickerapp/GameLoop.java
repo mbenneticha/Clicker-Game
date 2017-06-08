@@ -331,6 +331,7 @@ public class GameLoop extends SurfaceView implements Runnable {
 //        }
     }
 
+
     public void pause(){
         this.loopRunning = false;
         try{
@@ -371,7 +372,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         double defaultClickVal = 0.50;  // CHANGE THIS FOR TESTING
         gameLogic.setLevel(prefs.getInt("lvl", defaultValue));
         gameLogic.setClickCount(prefs.getInt("clicks", defaultValue));
-        gameLogic.setClickValue(Double.longBitsToDouble(prefs.getLong("unlockValue", Double.doubleToRawLongBits(defaultClickVal))));
+        gameLogic.setClickValue(Double.longBitsToDouble(prefs.getLong("clickval", Double.doubleToRawLongBits(defaultClickVal))));
         gameLogic.setCurrentCurrency(Double.longBitsToDouble(prefs.getLong("currentCurrency", defaultLong)));
         gameLogic.setTotalCurrency(Double.longBitsToDouble(prefs.getLong("totalCurrency", defaultLong)));
         gameLogic.setFoodLevel(prefs.getInt("foodlvl", defaultValue));

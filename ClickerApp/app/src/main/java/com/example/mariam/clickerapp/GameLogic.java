@@ -141,7 +141,7 @@ public class GameLogic {
         this.clickCount = 0;
         this.total_currency = 0.00;
         this.current_currency = 0.00;
-        this.clickValue = 0.52;
+        this.clickValue = 0.02;
         this.level = 0;
         this.unlockValue = 1;
         this.foodLevel = 0;
@@ -545,18 +545,22 @@ public class GameLogic {
     public void upgradeCheck(Upgrade upgrade_food, Upgrade upgrade_water, Upgrade upgrade_hut, Upgrade upgrade_wheel) {
         // Reset and check upgrade food
         upgrade_food.setUpgradeLevel(foodLevel);
+        upgrade_food.unlockUpgrade(foodLevel);
         startFoodTimer(upgrade_food);
 
         // Reset and check upgrade water
         upgrade_water.setUpgradeLevel(foodLevel);
+        upgrade_water.unlockUpgrade(waterLevel);
         startWaterTimer(upgrade_water);
 
         // Reset and check upgrade hut
         upgrade_hut.setUpgradeLevel(hutLevel);
+        upgrade_hut.unlockUpgrade(hutLevel);
         startHutTimer(upgrade_hut);
 
         // Reset and check upgrade wheel
         upgrade_wheel.setUpgradeLevel(wheelLevel);
+        upgrade_wheel.unlockUpgrade(wheelLevel);
         startWheelTimer(upgrade_wheel);
 
     }
