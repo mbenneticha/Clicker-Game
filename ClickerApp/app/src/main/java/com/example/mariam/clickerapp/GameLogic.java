@@ -264,11 +264,9 @@ public class GameLogic {
     public void startFoodTimer(Upgrade upgrade_food) {
         switch (foodLevel){
             case 0: {
-                upgrade_food.unlockUpgrade(0);
                 break;
             }
             case 1: {
-                upgrade_food.unlockUpgrade(1); //set to basic image
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -283,7 +281,6 @@ public class GameLogic {
                 break;
             }
             case 2: {
-                upgrade_food.unlockUpgrade(2); //set to deluxe image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -297,7 +294,6 @@ public class GameLogic {
                 break;
             }
             case 3: {
-                upgrade_food.unlockUpgrade(3); //set to luxury image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -311,7 +307,6 @@ public class GameLogic {
                 break;
             }
             case 4: {
-                upgrade_food.unlockUpgrade(4); //set to gold image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -325,7 +320,6 @@ public class GameLogic {
                 break;
             }
             default: {
-                upgrade_food.unlockUpgrade(0); //set to locked image -- not working
                 break;
             }
         }
@@ -335,11 +329,9 @@ public class GameLogic {
     public void startWaterTimer(Upgrade upgrade_water) {
         switch (waterLevel){
             case 0: {
-                upgrade_water.unlockUpgrade(0); //set to locked image -- not working
                 break;
             }
             case 1: {
-                upgrade_water.unlockUpgrade(1); //set to basic image
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -354,7 +346,6 @@ public class GameLogic {
                 break;
             }
             case 2: {
-                upgrade_water.unlockUpgrade(2); //set to deluxe image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -368,7 +359,6 @@ public class GameLogic {
                 break;
             }
             case 3: {
-                upgrade_water.unlockUpgrade(3); //set to luxury image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -382,7 +372,6 @@ public class GameLogic {
                 break;
             }
             case 4: {
-                upgrade_water.unlockUpgrade(4); //set to gold image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -396,7 +385,6 @@ public class GameLogic {
                 break;
             }
             default: {
-                upgrade_water.unlockUpgrade(0); //set to locked image -- not working
                 break;
             }
         }
@@ -405,11 +393,9 @@ public class GameLogic {
     public void startHutTimer(Upgrade upgrade_hut) {
         switch (hutLevel){
             case 0: {
-                upgrade_hut.unlockUpgrade(0); //set to locked image -- not working
                 break;
             }
             case 1: {
-                upgrade_hut.unlockUpgrade(1); //set to basic image
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -424,7 +410,6 @@ public class GameLogic {
                 break;
             }
             case 2: {
-                upgrade_hut.unlockUpgrade(2); //set to deluxe image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -438,7 +423,6 @@ public class GameLogic {
                 break;
             }
             case 3: {
-                upgrade_hut.unlockUpgrade(3); //set to luxury image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -452,7 +436,6 @@ public class GameLogic {
                 break;
             }
             case 4: {
-                upgrade_hut.unlockUpgrade(4); //set to gold image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -466,7 +449,6 @@ public class GameLogic {
                 break;
             }
             default: {
-                upgrade_hut.unlockUpgrade(0); //set to locked image -- not working
                 break;
             }
         }
@@ -475,11 +457,9 @@ public class GameLogic {
     public void startWheelTimer(Upgrade upgrade_wheel) {
         switch (wheelLevel){
             case 0: {
-                upgrade_wheel.unlockUpgrade(0); //set to locked image -- not working
                 break;
             }
             case 1: {
-                upgrade_wheel.unlockUpgrade(1); //set to basic image
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -494,7 +474,6 @@ public class GameLogic {
                 break;
             }
             case 2: {
-                upgrade_wheel.unlockUpgrade(2); //set to deluxe image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -508,7 +487,6 @@ public class GameLogic {
                 break;
             }
             case 3: {
-                upgrade_wheel.unlockUpgrade(3); //set to luxury image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -522,7 +500,6 @@ public class GameLogic {
                 break;
             }
             case 4: {
-                upgrade_wheel.unlockUpgrade(4); //set to gold image -- not working
                 Timer timer = new Timer();
                 timers.add(timer);
                 timer.scheduleAtFixedRate(new TimerTask()
@@ -536,7 +513,6 @@ public class GameLogic {
                 break;
             }
             default: {
-                upgrade_wheel.unlockUpgrade(0); //set to locked image -- not working
                 break;
             }
         }
@@ -562,10 +538,10 @@ public class GameLogic {
     }
 
     public void refreshUpgradeImages(Upgrade upgrade_food, Upgrade upgrade_water, Upgrade upgrade_hut, Upgrade upgrade_wheel) {
-        upgrade_food.unlockUpgrade(foodLevel);
-        upgrade_water.unlockUpgrade(waterLevel);
-        upgrade_hut.unlockUpgrade(hutLevel);
-        upgrade_wheel.unlockUpgrade(wheelLevel);
+        upgrade_food.resetImage(foodLevel);
+        upgrade_water.resetImage(waterLevel);
+        upgrade_hut.resetImage(hutLevel);
+        upgrade_wheel.resetImage(wheelLevel);
     }
 
 
@@ -577,7 +553,6 @@ public class GameLogic {
                     upgrade_food.unlockUpgrade(1); //set to basic image
                     upgrade_food.incrementUpgradeLevel();
                     foodLevel += 1;
-                    upgrade_food.setImageBasic();
                     startFoodTimer(upgrade_food);
                 }
                 break;
@@ -726,7 +701,6 @@ public class GameLogic {
                     upgrade_wheel.unlockUpgrade(1); //set to basic image
                     upgrade_wheel.incrementUpgradeLevel();
                     wheelLevel += 1;
-                    //upgrade_food.setImageBasic(); --try this...not working
                     startWheelTimer(upgrade_wheel);
                 }
                 break;

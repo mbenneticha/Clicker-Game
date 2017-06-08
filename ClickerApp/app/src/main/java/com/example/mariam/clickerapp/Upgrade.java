@@ -105,8 +105,26 @@ public class Upgrade extends Button{
             this.isUnlocked = true;
         }
         else{
-            this.setImageAtRest();
+            this.setImageLocked();
             this.isUnlocked = false;
+        }
+    }
+
+    public void resetImage(int unlock_number) {
+        if (unlock_number == 1){
+            this.setImageBasic();
+        }
+        else if (unlock_number == 2){
+            this.setImageDeluxe();
+        }
+        else if (unlock_number == 3){
+            this.setImageLuxury();
+        }
+        else if (unlock_number == 4){
+            this.setImageGold();
+        }
+        else{
+            this.setImageLocked();
         }
     }
 
