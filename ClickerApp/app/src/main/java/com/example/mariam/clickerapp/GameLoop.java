@@ -302,10 +302,10 @@ public class GameLoop extends SurfaceView implements Runnable {
 
             double totalcurrency = this.gameLogic.getTotalCurrency();
             if (totalcurrency > 1000) {
-                canvas.drawText(df.format(totalcurrency).toLowerCase(), ((this.WIDTH / 5)), 220, paint);
+                canvas.drawText(("$$"+df.format(totalcurrency).toLowerCase()), ((this.WIDTH / 5)), 220, paint);
             }
             else {
-                canvas.drawText(Double.toString(this.gameLogic.getTotalCurrency()), ((this.WIDTH / 5)), 220, paint);
+                canvas.drawText(("$$"+Double.toString(this.gameLogic.getTotalCurrency())), ((this.WIDTH / 5)), 220, paint);
             }
 
             paint.setTextSize(100);
@@ -313,10 +313,10 @@ public class GameLoop extends SurfaceView implements Runnable {
             paint.setTextSize(75);
             double currentcurrency = this.gameLogic.getCurrentCurrency();
             if (currentcurrency > 1000) {
-                canvas.drawText(df.format(currentcurrency).toLowerCase(), ((this.WIDTH / 5) * 3), 220, paint);
+                canvas.drawText(("$"+df.format(currentcurrency).toLowerCase()), ((this.WIDTH / 5) * 3), 220, paint);
             }
             else {
-                canvas.drawText(Double.toString(this.gameLogic.getCurrentCurrency()), ((this.WIDTH / 5) * 3), 220, paint);
+                canvas.drawText(("$"+Double.toString(this.gameLogic.getCurrentCurrency())), ((this.WIDTH / 5) * 3), 220, paint);
             }
 
             surfaceHolder.unlockCanvasAndPost(canvas);
@@ -450,7 +450,7 @@ public class GameLoop extends SurfaceView implements Runnable {
                 runHamsterEatAnimation();
             }
             return true;
-        } else if((!this.upgrade_food.isUnlocked()) && (this.upgrade_food.isUnlockable())){
+        }else if((!this.upgrade_food.isUnlocked()) && (this.upgrade_food.isUnlockable())){
             if(event.getAction() == MotionEvent.ACTION_DOWN){
                 this.gameLogic.upgradeFood(this.upgrade_food);
             }
