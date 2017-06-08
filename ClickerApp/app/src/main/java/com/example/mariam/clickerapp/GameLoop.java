@@ -220,7 +220,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         }
 
         this.levelAndUpgradeCheck(this.gameLogic.getLevel());
-
+        gameLogic.refreshUpgradeImages(this.upgrade_food, this.upgrade_water, this.upgrade_hut, this.upgrade_wheel);
 
     }
 
@@ -383,6 +383,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         gameLogic.setMultiplier(prefs.getInt("multiplier",one));
 
         gameLogic.upgradeCheck(this.upgrade_food, this.upgrade_water, this.upgrade_hut, this.upgrade_wheel);
+        gameLogic.refreshUpgradeImages(this.upgrade_food, this.upgrade_water, this.upgrade_hut, this.upgrade_wheel);
         this.loopRunning = true;
         this.gameLoopThread = new Thread(this);
         this.gameLoopThread.start();

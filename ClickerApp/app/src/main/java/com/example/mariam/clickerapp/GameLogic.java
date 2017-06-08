@@ -545,24 +545,27 @@ public class GameLogic {
     public void upgradeCheck(Upgrade upgrade_food, Upgrade upgrade_water, Upgrade upgrade_hut, Upgrade upgrade_wheel) {
         // Reset and check upgrade food
         upgrade_food.setUpgradeLevel(foodLevel);
-        upgrade_food.unlockUpgrade(foodLevel);
         startFoodTimer(upgrade_food);
 
         // Reset and check upgrade water
         upgrade_water.setUpgradeLevel(foodLevel);
-        upgrade_water.unlockUpgrade(waterLevel);
         startWaterTimer(upgrade_water);
 
         // Reset and check upgrade hut
         upgrade_hut.setUpgradeLevel(hutLevel);
-        upgrade_hut.unlockUpgrade(hutLevel);
         startHutTimer(upgrade_hut);
 
         // Reset and check upgrade wheel
         upgrade_wheel.setUpgradeLevel(wheelLevel);
-        upgrade_wheel.unlockUpgrade(wheelLevel);
         startWheelTimer(upgrade_wheel);
 
+    }
+
+    public void refreshUpgradeImages(Upgrade upgrade_food, Upgrade upgrade_water, Upgrade upgrade_hut, Upgrade upgrade_wheel) {
+        upgrade_food.unlockUpgrade(foodLevel);
+        upgrade_water.unlockUpgrade(waterLevel);
+        upgrade_hut.unlockUpgrade(hutLevel);
+        upgrade_wheel.unlockUpgrade(wheelLevel);
     }
 
 
