@@ -73,6 +73,7 @@ public class Upgrade extends Button{
         return this.isUnlockable;
     }
 
+
     public boolean isUnlocked(){return this.isUnlocked;}
 
     public void setIsUnlocked(boolean status) { this.isUnlocked = status; }

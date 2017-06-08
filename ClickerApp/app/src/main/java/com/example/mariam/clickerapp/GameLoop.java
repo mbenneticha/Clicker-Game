@@ -500,16 +500,52 @@ public class GameLoop extends SurfaceView implements Runnable {
                 this.ability_2.unlockAbility();
             }
         }
+        if(level == 6){
+            this.upgrade_food.setIsUnlocked(false);
+        }
+        if(level == 7){
+            this.upgrade_water.setIsUnlocked(false);
+        }
+        if(level == 8){
+            this.upgrade_hut.setIsUnlocked(false);
+        }
+        if(level == 9){
+            this.upgrade_wheel.setIsUnlocked(false);
+        }
 
         if(level >= 10){
             if (!this.ability_3.isUnlocked()){
                 this.ability_3.unlockAbility();
             }
         }
+        if(level == 11){
+            this.upgrade_food.setIsUnlocked(false);
+        }
+        if(level == 12){
+            this.upgrade_water.setIsUnlocked(false);
+        }
+        if(level == 13){
+            this.upgrade_hut.setIsUnlocked(false);
+        }
+        if(level == 14){
+            this.upgrade_wheel.setIsUnlocked(false);
+        }
         if(level >= 15){
             if (!this.ability_4.isUnlocked()){
                 this.ability_4.unlockAbility();
             }
+        }
+        if(level == 16){
+            this.upgrade_food.setIsUnlocked(false);
+        }
+        if(level == 17){
+            this.upgrade_water.setIsUnlocked(false);
+        }
+        if(level == 18){
+            this.upgrade_hut.setIsUnlocked(false);
+        }
+        if(level == 19){
+            this.upgrade_wheel.setIsUnlocked(false);
         }
 
     }

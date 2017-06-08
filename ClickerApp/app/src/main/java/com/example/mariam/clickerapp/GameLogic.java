@@ -688,7 +688,7 @@ public class GameLogic {
                 break;
             }
             default: {
-                upgrade_hut.unlockUpgrade(0); //set to locked image -- not working
+                //upgrade_hut.unlockUpgrade(0); //set to locked image -- not working
                 break;
             }
         }
@@ -738,7 +738,7 @@ public class GameLogic {
                 break;
             }
             default: {
-                upgrade_wheel.unlockUpgrade(0); //set to locked image -- not working
+                //upgrade_wheel.unlockUpgrade(0); //set to locked image -- not working
                 break;
             }
         }
