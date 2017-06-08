@@ -23,13 +23,14 @@ import static java.security.AccessController.getContext;
 public class MainActivity extends AppCompatActivity {
 
     private boolean onTitle;
+    protected static MediaPlayer song;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MediaPlayer song = MediaPlayer.create(MainActivity.this,R.raw.hamsong);
+        song = MediaPlayer.create(MainActivity.this,R.raw.hamsong);
         song.start();
         song.setLooping(true);
         this.onTitle = true;

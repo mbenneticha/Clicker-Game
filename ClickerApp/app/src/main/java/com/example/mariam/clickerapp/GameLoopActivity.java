@@ -34,12 +34,14 @@ public class GameLoopActivity extends AppCompatActivity {
     protected void onPause(){
         super.onPause();
         this.gameLoop.pause();
+        MainActivity.song.pause();
     }
 
     @Override
     protected void onResume(){
         super.onResume();
         this.gameLoop.resume();
+        MainActivity.song.start();
     }
 
     @Override
