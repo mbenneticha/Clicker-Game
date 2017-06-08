@@ -23,8 +23,8 @@ public class GameLogic {
     total_currency = overall earned $ amount
     current_currency = $ amount altered by spending
      */
-    private int clickCount, level, foodLevel, waterLevel, wheelLevel, hutLevel, multiplier;
-    private double clickValue, unlockValue, total_currency, current_currency;
+    private int clickCount, level, foodLevel, waterLevel, wheelLevel, hutLevel, multiplier, upgradeValue;
+    private double clickValue, unlockValue, total_currency, current_currency, nextUpgradeCost;
     double level20 = (1937102445*3);
     double level21 = (1937102445*6);
 	double[] clickValues = new double[] { 0.02, 0.03, 0.09, 0.27, 0.81, 2.43, 3.65, 10.94, 32.81, 98.42, 295.25, 442.87, 1328.60, 3985.81, 11957.43, 35872.27, 71744.54, 215233.61, 645700.82, 1937102.45, 5811307.34  };
@@ -32,7 +32,8 @@ public class GameLogic {
     double[] foodCost = new double[] { 7.50, 1822.50, 442867.50, 107616802.50};
     double[] waterCost = new double[] { 22.50, 5467.50, 1328602.50, 322850407.50};
     double[] hutCost = new double[] {67.50, 16402.50, 3985807.50, 968551222.50};
-    double[] wheelCost = new double[] {202.50, 49207.50, 11957422.50, 2905653667.50};
+    double[] wheelCost = new double[] {202.50, 16402.50, 11957422.50, 2905653667.50};
+    double[] upgradeCost = new double[]{7.50, 22.50, 67.50, 202.50, 1822.50, 5467.50, 16402.50, 16402.50, 442867.50, 1328602.50, 3985807.50, 11957422.50, 107616802.50, 322850407.50, 968551222.50, 2905653667.50};
     ArrayList<Timer> timers = new ArrayList<Timer>();
 
 
@@ -48,6 +49,8 @@ public class GameLogic {
         this.wheelLevel = 0;
         this.hutLevel = 0;
         this.multiplier = 1;
+        this.nextUpgradeCost = 7.50;
+        this.upgradeValue = 1;
     }
 
 
@@ -151,6 +154,7 @@ public class GameLogic {
         this.wheelLevel = 0;
         this.hutLevel = 0;
         this.multiplier = this.multiplier*2;
+        this.upgradeValue = 0;
         cancelAllTimers();
     }
 
@@ -247,6 +251,17 @@ public class GameLogic {
 
     public void setWheelLevel(int value){
         this.wheelLevel = value;
+    }
+
+    public double getUpgradeCost(){
+        return this.nextUpgradeCost;
+    }
+
+    public void setUpgradeCost(double value){ this.nextUpgradeCost = value;};
+
+    public void incUpgradeCost(){
+        this.nextUpgradeCost = upgradeCost[this.upgradeValue];
+        upgradeValue++;
     }
 
     public double getFoodCost() { return foodCost[foodLevel]; }
@@ -554,6 +569,7 @@ public class GameLogic {
                     this.current_currency -= foodCost[foodLevel];
                     upgrade_food.unlockUpgrade(1); //set to basic image
                     upgrade_food.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     foodLevel += 1;
                     startFoodTimer(upgrade_food);
                 }
@@ -564,6 +580,7 @@ public class GameLogic {
                     this.current_currency -= foodCost[foodLevel];
                     upgrade_food.unlockUpgrade(2); //set to deluxe image -- not working
                     upgrade_food.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     foodLevel += 1;
                     startFoodTimer(upgrade_food);
                 }
@@ -574,6 +591,7 @@ public class GameLogic {
                     this.current_currency -= foodCost[foodLevel];
                     upgrade_food.unlockUpgrade(3); //set to luxury image -- not working
                     upgrade_food.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     foodLevel += 1;
                     startFoodTimer(upgrade_food);
                 }
@@ -584,6 +602,7 @@ public class GameLogic {
                     this.current_currency -= foodCost[foodLevel];
                     upgrade_food.unlockUpgrade(4); //set to gold image -- not working
                     upgrade_food.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     foodLevel += 1;
                     startFoodTimer(upgrade_food);
                 }
@@ -600,11 +619,12 @@ public class GameLogic {
         switch (waterLevel) {
             case 0: {
                 if (this.current_currency >= waterCost[waterLevel]) {
-                        this.current_currency -= waterCost[waterLevel];
-                        upgrade_water.unlockUpgrade(1); //set to basic image
-                        upgrade_water.incrementUpgradeLevel();
-                        waterLevel += 1;
-                        startWaterTimer(upgrade_water);
+                    this.current_currency -= waterCost[waterLevel];
+                    upgrade_water.unlockUpgrade(1); //set to basic image
+                    upgrade_water.incrementUpgradeLevel();
+                    this.incUpgradeCost();
+                    waterLevel += 1;
+                    startWaterTimer(upgrade_water);
                 }
                 break;
             }
@@ -613,6 +633,7 @@ public class GameLogic {
                     this.current_currency -= waterCost[waterLevel];
                     upgrade_water.unlockUpgrade(2); //set to deluxe image -- not working
                     upgrade_water.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     waterLevel += 1;
                     startWaterTimer(upgrade_water);
                 }
@@ -623,6 +644,7 @@ public class GameLogic {
                     this.current_currency -= waterCost[waterLevel];
                     upgrade_water.unlockUpgrade(3); //set to luxury image -- not working
                     upgrade_water.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     waterLevel += 1;
                     startWaterTimer(upgrade_water);
                 }
@@ -633,6 +655,7 @@ public class GameLogic {
                     this.current_currency -= waterCost[waterLevel];
                     upgrade_water.unlockUpgrade(4); //set to gold image -- not working
                     upgrade_water.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     waterLevel += 1;
                     startWaterTimer(upgrade_water);
                 }
@@ -652,6 +675,7 @@ public class GameLogic {
                     this.current_currency -= hutCost[hutLevel];
                     upgrade_hut.unlockUpgrade(1); //set to basic image
                     upgrade_hut.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     hutLevel += 1;
                     startHutTimer(upgrade_hut);
                 }
@@ -662,6 +686,7 @@ public class GameLogic {
                     this.current_currency -= hutCost[hutLevel];
                     upgrade_hut.unlockUpgrade(2); //set to deluxe image -- not working
                     upgrade_hut.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     hutLevel += 1;
                     startHutTimer(upgrade_hut);
                 }
@@ -672,6 +697,7 @@ public class GameLogic {
                     this.current_currency -= hutCost[hutLevel];
                     upgrade_hut.unlockUpgrade(3); //set to luxury image -- not working
                     upgrade_hut.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     hutLevel += 1;
                     startHutTimer(upgrade_hut);
                 }
@@ -682,6 +708,7 @@ public class GameLogic {
                     this.current_currency -= hutCost[hutLevel];
                     upgrade_hut.unlockUpgrade(4); //set to gold image -- not working
                     upgrade_hut.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     hutLevel += 1;
                     startHutTimer(upgrade_hut);
                 }
@@ -702,6 +729,7 @@ public class GameLogic {
                     this.current_currency -= wheelCost[wheelLevel];
                     upgrade_wheel.unlockUpgrade(1); //set to basic image
                     upgrade_wheel.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     wheelLevel += 1;
                     startWheelTimer(upgrade_wheel);
                 }
@@ -712,6 +740,7 @@ public class GameLogic {
                     this.current_currency -= wheelCost[wheelLevel];
                     upgrade_wheel.unlockUpgrade(2); //set to deluxe image -- not working
                     upgrade_wheel.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     wheelLevel += 1;
                     startWheelTimer(upgrade_wheel);
                 }
@@ -722,6 +751,7 @@ public class GameLogic {
                     this.current_currency -= wheelCost[wheelLevel];
                     upgrade_wheel.unlockUpgrade(3); //set to luxury image -- not working
                     upgrade_wheel.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     wheelLevel += 1;
                     startWheelTimer(upgrade_wheel);
                 }
@@ -732,6 +762,7 @@ public class GameLogic {
                     this.current_currency -= wheelCost[wheelLevel];
                     upgrade_wheel.unlockUpgrade(4); //set to gold image -- not working
                     upgrade_wheel.incrementUpgradeLevel();
+                    this.incUpgradeCost();
                     wheelLevel += 1;
                     startWheelTimer(upgrade_wheel);
                 }

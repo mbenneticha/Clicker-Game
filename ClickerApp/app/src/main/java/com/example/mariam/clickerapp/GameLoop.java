@@ -214,6 +214,7 @@ public class GameLoop extends SurfaceView implements Runnable {
 
     private void update(){
         this.updateAnimations();
+        this.gameLogic.getUpgradeCost();
 
         if(this.gameLogic.getTotalCurrency() >= this.gameLogic.getUnlockValue()){
             this.gameLogic.levelUp();
@@ -254,6 +255,12 @@ public class GameLoop extends SurfaceView implements Runnable {
             canvas.drawBitmap(this.screen, 75, 75, null);
             canvas.drawBitmap(this.cage, 155, 322, null);
             canvas.drawBitmap(this.incButton.getCurrentImage(), this.incButton.getXPos(), this.incButton.getYPos(), null);
+
+            canvas.drawText("Total Money:", ((this.WIDTH / 5) - 160), 75, paint);
+            canvas.drawText("Current Money:", ((this.WIDTH / 5) * 3), 75, paint);
+            canvas.drawText("Next Upgrade Cost: ", ((this.WIDTH / 5) ), ((this.HEIGHT / 2) - 100), paint);
+            canvas.drawText(("$" + Double.toString(this.gameLogic.getUpgradeCost())),((this.WIDTH / 5)*3 ), ((this.HEIGHT / 2) - 100), paint );
+
 
             if(!this.ability_1.isRecharging) {
                 canvas.drawBitmap(this.ability_1.getCurrentImage(), this.ability_1.getXPos(), this.ability_1.getYPos(), null);
@@ -302,10 +309,10 @@ public class GameLoop extends SurfaceView implements Runnable {
 
             double totalcurrency = this.gameLogic.getTotalCurrency();
             if (totalcurrency > 1000) {
-                canvas.drawText(("$$"+df.format(totalcurrency).toLowerCase()), ((this.WIDTH / 5)), 220, paint);
+                canvas.drawText(("$$"+df.format(totalcurrency).toLowerCase()), ((this.WIDTH / 5)-160), 220, paint);
             }
             else {
-                canvas.drawText(("$$"+Double.toString(this.gameLogic.getTotalCurrency())), ((this.WIDTH / 5)), 220, paint);
+                canvas.drawText(("$$"+Double.toString(this.gameLogic.getTotalCurrency())), ((this.WIDTH / 5)-160), 220, paint);
             }
 
             paint.setTextSize(100);
@@ -356,6 +363,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         editor.putInt("wheellvl", gameLogic.getWheelLevel());
         editor.putLong("unlockValue", Double.doubleToRawLongBits(gameLogic.getUnlockValue()));
         editor.putInt("multiplier", gameLogic.getMultiplier());
+        editor.putLong("upgradeValue",Double.doubleToRawLongBits(gameLogic.getUpgradeCost()));
         editor.commit();
 
         gameLogic.cancelAllTimers();
@@ -381,6 +389,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         gameLogic.setWheelLevel(prefs.getInt("wheellvl", defaultValue));
         gameLogic.setUnlockValue(Double.longBitsToDouble(prefs.getLong("unlockValue", defaultUnlock)));
         gameLogic.setMultiplier(prefs.getInt("multiplier",one));
+        gameLogic.setUpgradeCost(Double.longBitsToDouble(prefs.getLong("upgradeValue", defaultLong)));
 
         gameLogic.upgradeCheck(this.upgrade_food, this.upgrade_water, this.upgrade_hut, this.upgrade_wheel);
         gameLogic.refreshUpgradeImages(this.upgrade_food, this.upgrade_water, this.upgrade_hut, this.upgrade_wheel);
@@ -479,6 +488,9 @@ public class GameLoop extends SurfaceView implements Runnable {
 
     private void levelAndUpgradeCheck(int level){
 
+        if (level == 0){
+            this.gameLogic.setUpgradeCost(this.gameLogic.upgradeCost[0]);
+        }
         if(level >= 1){
             if (!this.ability_1.isUnlocked()){
                 this.ability_1.unlockAbility();
