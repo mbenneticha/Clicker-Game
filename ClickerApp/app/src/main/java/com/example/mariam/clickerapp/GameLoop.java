@@ -44,13 +44,15 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class GameLoop extends SurfaceView implements Runnable {
 
 //     Test Values: are much shorter
-    final public int tenMinutes = 10000;
-    final public int twentyMinutes = 10000;
-    final public int sixtyMinutes = 10000;
+    //final public int tenMinutes = 10000;
+    //final public int twentyMinutes = 10000;
+    //final public int sixtyMinutes = 10000;
 
     // Real Values
-//    final public int tenMinutes = 600000;
-//    final public int twentyMinutes = 1200000;
+    final public int fiveMinutes = 300000;
+    final public int tenMinutes = 600000;
+    final public int fifteenMinutes = 900000;
+    final public int twentyMinutes = 1200000;
 //    final public int sixtyMinutes = 3600000;
 
     public GameLogic gameLogic;
@@ -115,7 +117,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         String ability3DisplayText = "The amount earned per second by your upgrades are doubled for 1 minute!";
         String ability4DisplayText = "All your upgrades permanently earn 5% more!";
 
-        this.ability_1 = new Ability(context, "Peas", 1, R.drawable.ability_peas_active_onbutton, R.drawable.ability_peas_onbutton, R.drawable.ability_peas_locked_onbutton, this.WIDTH, this.HEIGHT, 250, 250, this.tenMinutes, ability1DisplayText){
+        this.ability_1 = new Ability(context, "Peas", 1, R.drawable.ability_peas_active_onbutton, R.drawable.ability_peas_onbutton, R.drawable.ability_peas_locked_onbutton, this.WIDTH, this.HEIGHT, 250, 250, this.fiveMinutes, ability1DisplayText){
             @Override
             public double turnOnAbility(double passedInValue){
                 this.isActive = true;
@@ -136,7 +138,7 @@ public class GameLoop extends SurfaceView implements Runnable {
                 return returnValue;
             }
         };
-        this.ability_2 = new Ability(context, "Broccoli", 2, R.drawable.ability_broccoli_active_onbutton, R.drawable.ability_broccoli_onbutton, R.drawable.ability_broccoli_locked_onbutton, this.WIDTH, this.HEIGHT, 250, 250, this.twentyMinutes, ability2DisplayText){
+        this.ability_2 = new Ability(context, "Broccoli", 2, R.drawable.ability_broccoli_active_onbutton, R.drawable.ability_broccoli_onbutton, R.drawable.ability_broccoli_locked_onbutton, this.WIDTH, this.HEIGHT, 250, 250, this.tenMinutes, ability2DisplayText){
             @Override
             public double turnOnAbility(double passedInValue){
                 this.isActive = true;
@@ -151,7 +153,7 @@ public class GameLoop extends SurfaceView implements Runnable {
                 return newClickValue;
             }
         };
-        this.ability_3 = new Ability(context, "Carrot", 3, R.drawable.ability_carrot_active_onbutton, R.drawable.ability_carrot_onbutton, R.drawable.ability_carrot_locked_onbutton, this.WIDTH, this.HEIGHT, 250, 250, this.sixtyMinutes, ability3DisplayText){
+        this.ability_3 = new Ability(context, "Carrot", 3, R.drawable.ability_carrot_active_onbutton, R.drawable.ability_carrot_onbutton, R.drawable.ability_carrot_locked_onbutton, this.WIDTH, this.HEIGHT, 250, 250, this.fifteenMinutes, ability3DisplayText){
             @Override
             public double turnOnAbility(double passedInValue){
                 this.isActive = true;
@@ -166,7 +168,7 @@ public class GameLoop extends SurfaceView implements Runnable {
                 return newClickValue;
             }
         };
-        this.ability_4 = new Ability(context, "Yogurt Drops", 4, R.drawable.ability_yogurtdrops_active_onbutton, R.drawable.ability_yogurtdrops_onbutton, R.drawable.ability_yogurtdrops_locked_onbutton, this.WIDTH, this.HEIGHT, 250, 250, this.tenMinutes, ability4DisplayText){
+        this.ability_4 = new Ability(context, "Yogurt Drops", 4, R.drawable.ability_yogurtdrops_active_onbutton, R.drawable.ability_yogurtdrops_onbutton, R.drawable.ability_yogurtdrops_locked_onbutton, this.WIDTH, this.HEIGHT, 250, 250, this.twentyMinutes, ability4DisplayText){
             @Override
             public double turnOnAbility(double passedInValue){
                 this.isActive = true;
@@ -218,6 +220,18 @@ public class GameLoop extends SurfaceView implements Runnable {
 
         if(this.gameLogic.getTotalCurrency() >= this.gameLogic.getUnlockValue()){
             this.gameLogic.levelUp();
+            /*
+            if (this.gameLogic.getLevel() < 20) {
+                String levelText = "You reached level " + this.gameLogic.getLevel() + "!\r\n" + "Next level at $$" + this.gameLogic.getUnlockValue() + ".";
+                Toast levelToast = Toast.makeText(getContext(), levelText, Toast.LENGTH_SHORT);
+                levelToast.show();
+            }
+            if (this.gameLogic.getLevel() == 20) {
+                String winText = "You WIN"!\r\n" + "Game will reset with 2x money per click.";
+                Toast winToast = Toast.makeText(getContext(), winText, Toast.LENGTH_SHORT);
+                winToast.show();
+            }
+            */
         }
 
         this.levelAndUpgradeCheck(this.gameLogic.getLevel());
@@ -377,7 +391,7 @@ public class GameLoop extends SurfaceView implements Runnable {
         int one = 1;
         long defaultLong = 0;
         long defaultUnlock = 5;
-        double defaultClickVal = 0.50;  // CHANGE THIS FOR TESTING
+        double defaultClickVal = 0.02;  // CHANGE THIS FOR TESTING
         gameLogic.setLevel(prefs.getInt("lvl", defaultValue));
         gameLogic.setClickCount(prefs.getInt("clicks", defaultValue));
         gameLogic.setClickValue(Double.longBitsToDouble(prefs.getLong("clickval", Double.doubleToRawLongBits(defaultClickVal))));

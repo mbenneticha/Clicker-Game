@@ -50,9 +50,9 @@ public class TitleScreen extends SurfaceView implements Runnable{
         this.HEIGHT = loc.y;
 
         this.background = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bluetexturedbg), this.WIDTH, this.HEIGHT, false);
-        this.option1Background = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ts_optionbackground), 600, 180, false);
+        //this.option1Background = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ts_optionbackground), 600, 180, false);
         this.option2Background = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ts_optionbackground), 600, 180, false);
-        this.option3Background = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ts_optionbackground), 600, 180, false);
+        //this.option3Background = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ts_optionbackground), 600, 180, false);
         this.titleBackground = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ts_titlebackground), this.WIDTH, (this.HEIGHT / 2), false);
         this.hamsterBackground = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ts_hamsterbackground), (this.WIDTH / 2), this.HEIGHT, false);
         this.hamster = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.hamster_default), 550, 550, false);
@@ -84,9 +84,9 @@ public class TitleScreen extends SurfaceView implements Runnable{
             canvas.drawBitmap(this.background, 0, 0, null);
             canvas.drawBitmap(this.hamsterBackground, 75, 0, null);
             canvas.drawBitmap(this.titleBackground, 0, 0, null);
-            canvas.drawBitmap(this.option1Background, 850, 1200, null);
+            //canvas.drawBitmap(this.option1Background, 850, 1200, null);
             canvas.drawBitmap(this.option2Background, 850, 1500, null);
-            canvas.drawBitmap(this.option3Background, 850, 1800, null);
+            //canvas.drawBitmap(this.option3Background, 850, 1800, null);
             canvas.drawBitmap(this.hamster, 160, 1275, null);
 
             paint.setStyle(Paint.Style.FILL);
@@ -97,8 +97,8 @@ public class TitleScreen extends SurfaceView implements Runnable{
             canvas.drawText("Hamster Clicker", 75, 550, paint);
 
             paint.setTextSize(125);
-            canvas.drawText("New Game", 975, 1350, paint);
-//            canvas.drawText("Load Game", 975, 1650, paint);
+            //canvas.drawText("New Game", 975, 1350, paint);
+            canvas.drawText("Start Game", 975, 1650, paint);
 //            canvas.drawText("Options", 975, 1950, paint);
 
 

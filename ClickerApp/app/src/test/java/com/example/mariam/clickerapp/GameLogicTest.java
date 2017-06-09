@@ -134,7 +134,7 @@ public class GameLogicTest extends TestCase{
 
     }
 
-
+/*
     //test levelUp, unlockValue increase, level increase, set new clickValue
     //test getUnlockValue(), getLevel().
     //Success
@@ -171,31 +171,7 @@ public class GameLogicTest extends TestCase{
         assertEquals(gm.clickValues[5], clickVal5);
 
     }
-
-    @Test
-    public void handleClick() throws Exception {
-
-    }
-
-    @Test
-    public void handleAbility1() throws Exception {
-
-    }
-
-    @Test
-    public void handleAbility2() throws Exception {
-
-    }
-
-    @Test
-    public void handleAbility3() throws Exception {
-
-    }
-
-    @Test
-    public void handleAbility4() throws Exception {
-
-    }
+*/
 
 
     @Override

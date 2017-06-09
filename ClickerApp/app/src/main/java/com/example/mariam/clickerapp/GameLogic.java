@@ -28,7 +28,7 @@ public class GameLogic {
     double level20 = (1937102445*3);
     double level21 = (1937102445*6);
 	double[] clickValues = new double[] { 0.02, 0.03, 0.09, 0.27, 0.81, 2.43, 3.65, 10.94, 32.81, 98.42, 295.25, 442.87, 1328.60, 3985.81, 11957.43, 35872.27, 71744.54, 215233.61, 645700.82, 1937102.45, 5811307.34  };
-    double[] unlockValues = new double[] { 0, 5, 15, 45, 135, 405, 1215, 3645, 10935, 32805, 98415, 295245, 885735, 2657205, 7971615, 23914845, 71744535, 215233505, 645700815, 1937102445, level20, level21  };
+    double[] unlockValues = new double[] { 0.0, 5.0, 15.0, 45.0, 135.0, 405.0, 1215.0, 3645.0, 10935.0, 32805, 98415, 295245, 885735, 2657205, 7971615, 23914845, 71744535, 215233505, 645700815, 1937102445, level20, level21  };
     double[] foodCost = new double[] { 7.50, 1822.50, 442867.50, 107616802.50};
     double[] waterCost = new double[] { 22.50, 5467.50, 1328602.50, 322850407.50};
     double[] hutCost = new double[] {67.50, 16402.50, 3985807.50, 968551222.50};
@@ -41,9 +41,9 @@ public class GameLogic {
         this.clickCount = 0;
         this.total_currency = 0.00;
         this.current_currency = 0.00;
-        this.clickValue = 0.52;
+        this.clickValue = 0.02;
         this.level = 0;
-        this.unlockValue = 1;
+        this.unlockValue = unlockValues[1];
         this.foodLevel = 0;
         this.waterLevel = 0;
         this.wheelLevel = 0;
@@ -148,7 +148,7 @@ public class GameLogic {
         this.current_currency = 0.00;
         this.clickValue = 0.02;
         this.level = 0;
-        this.unlockValue = 1;
+        this.unlockValue = unlockValues[1];
         this.foodLevel = 0;
         this.waterLevel = 0;
         this.wheelLevel = 0;
