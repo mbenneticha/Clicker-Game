@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ClickerApp</string>
+    <string name="app_name">Hamster Clicker</string>
     <string name="activity_main_layout_textview_text">Hamster Clicker App</string>
     <string name="button_click">Press Me!</string>
 </resources>
